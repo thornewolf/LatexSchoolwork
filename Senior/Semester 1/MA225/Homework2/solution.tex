@@ -1,0 +1,164 @@
+% !TEX options=--shell-escape
+
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{float}
+
+\newmdtheoremenv{theo}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{Homework 2}
+\newcommand{\AssignmentSub}{~ ~}
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{Question 1}
+% \input{question1.tex}
+Let $p, q, r$ be the propositions
+\begin{center}
+  \begin{tabular}{cl}
+    $p$: & Grizzly bears have been seen in the area. \\ 
+    $q$: & Hiking is safe on the trail. \\
+    $r$: & Berries are ripe along the trail. \\
+  \end{tabular}
+\end{center}
+
+\subsection{Write proposition 1}
+Grizzly bears have not been seen in the area and hiking on the trail is safe, but berries are ripe
+along the trail.
+
+\begin{center}
+  $ \lnot p \land q \land r $
+\end{center}
+
+\subsection{Write proposition 2}
+Hiking is not safe on the trail whenever grizzly bears have been seen in the area and berries are
+ripe along the trail.
+
+\begin{center}
+  $ (p \land r) \rightarrow \lnot q $
+\end{center}
+
+\subsection{Write proposition 3}
+If berries are ripe along the trail, hiking is safe if and only if grizzly bears have not been seen
+in the area.
+
+\begin{center}
+  $ r \rightarrow (q \leftrightarrow \lnot p) $
+\end{center}
+
+\subsection{Express $q \rightarrow \lnot r$}
+If hiking is safe on the trail, then berries are not ripe along the trail.
+
+\subsection{Express $(p \land \lnot q) \lor (q \land r)$}
+Grizzly bears have been seen in the area and hiking is not safe on the trail or hiking is safe on the trail and berries are ripe along the trail.
+
+\newpage
+
+\section{Question 2}
+\input{../POD5/body.tex}
+\newpage
+
+\section{Question 3}
+\input{../POD6/body.tex}
+\newpage
+
+\section{Question 4}
+%\input{question4.tex}
+\subsection{Every computer science student needs a course in discrete structures}
+\subsubsection{Input Variables}
+\begin{center}
+  \begin{tabular}{ccl}
+    $s$ & := & A single student. \\ 
+    $S$ & := & The set of all students. \\ 
+  \end{tabular}
+\end{center}
+
+\subsubsection{Define Necessary Propositions}
+\begin{center}
+  \begin{tabular}{ccl}
+    $P(x)$ & := & student $x$ is a computer science student. \\
+    $Q(x)$ & := & student $x$ needs a course in discrete structures. \\ 
+  \end{tabular}
+\end{center}
+
+\subsubsection{Multivariate Quantifiers and Predicates}
+\begin{center}
+  $ \forall s \in S~P(x) \rightarrow Q(x)$
+\end{center}
+
+
+\subsection{Every student in this class has taken at least one programming course}
+
+\subsubsection{Input Variables}
+\begin{center}
+  \begin{tabular}{ccl}
+    $s$ & := & A student. \\
+    $S$ & := & The set of all students. \\
+  \end{tabular}
+\end{center}
+
+\subsubsection{Define Necessary Propositions}
+\begin{center}
+  \begin{tabular}{ccl}
+    $P(x)$ & := & Student $x$ is in this class. \\
+    $Q(x)$ & := & Student $x$ has taken at least one programming course.
+  \end{tabular}
+\end{center}
+
+
+\subsubsection{Multivariate Quantifiers and Predicates}
+\begin{center}
+  $ \forall s \in S~P(x) \rightarrow Q(x) $
+\end{center}
+
+
+\subsection{There is a student in this class who has been in every room of at least one of the buildings on campus}
+
+\subsubsection{Input Variables}
+\begin{center}
+  \begin{tabular}{ccl}
+    $s$ & := & A single student. \\
+    $S$ & := & The set of all students. \\
+    $b$ & := & A single building. \\
+    $B$ & := & The set of all buildings on campus. \\
+  \end{tabular}
+\end{center}
+
+\subsubsection{Define Necessary Propositions}
+\begin{center}
+  \begin{tabular}{ccl}
+    $P(x)$ & := & Student $x$ is a student in this class. \\
+    $Q(x,y)$ & := & Student $x$ has been in every room of building $y$. \\
+  \end{tabular}
+\end{center}
+
+\subsubsection{Multivariate Quantifiers and Predicates}
+\begin{center}
+  $ \exists s \in S~\exists b \in B~(P(s) \land Q(s, b)) $
+\end{center}
+
+\newpage
+
+\section{Question 5}
+\input{../POD7/body.tex}
+\newpage
+
+\section{Question 6}
+\input{../POD8/body.tex}
+
+\end{document}

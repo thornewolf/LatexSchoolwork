@@ -1,0 +1,29 @@
+\subsection{Use the Euclidean algorithm to compute gcd(496, 752).}
+\begin{figure}[H]
+\centering
+\includegraphics[width=2.5in]{partASteps}
+\caption{An execution of the Euclidean algorithm to compute gcd(496, 725)}
+\end{figure}
+
+In this work, we continually update the values for $a,b$ to be $a := mod(b,a), b := a$. These actions take place simultaniously to correctly implement the Euclidean algorithm.
+
+gcd(496, 752) = 16.
+
+\subsection{Use the extended Euclidean algorithm to express gcd(496, 752) as a linear combination of 496
+and 752.}
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{partBSteps}
+\caption{An execution of the extended Euclidean algorithm to compute coefficients for $496, 752$ such that the sum is 16.}
+\end{figure}
+
+The first two lines of work are establishing baselines for when each coefficient $s,t$ in $496t + 752s = 16$. By taking the modulus of the previous two values within the third column, we can continually determine the difference between the presently assigned coefficient pairs and update our state accordingly. On $index = 4$ it can be seen that we reach a $remainder_i=16$ indicating we have found a compatible set of coefficients. Testing these values we can see that $-3\cdot 496 + 2\cdot 752 = 16$.
+
+\subsection{Find the inverse of 496 mod 752.}
+In order to find the inverse of 496 mod 752 we need to find some number $n$ such that $1 <= n <= 752$ where $[496 \cdot n]_{752} = [1]_{752}$.
+
+\begin{fact}
+$[a]_n \rm{~has~} [a]_n^{-1} \iff \rm{gcd}(a,n)=1$
+\end{fact}
+
+This fact means that the modular inverse of 496 within all equivalency classes of 752 only exists when 496 and 752 are coprime. Since we have established in part (a) that the greatest common denominator of these two numbers is 16, we can determine that there exists no ``inverse of 496 mod 752''.

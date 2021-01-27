@@ -1,0 +1,50 @@
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{titlesec} % Enables custom title sections.
+\usepackage{float}
+\usepackage{theorem}
+\usepackage{listings}
+
+\theorembodyfont{\rm}
+\newmdtheoremenv{theo}{Theorem}
+\newmdtheoremenv{fact}{Fact}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{lemma}{Lemma}
+
+
+\titleformat{\section}
+{\normalfont\normalsize}{\thesection}{1em}{}
+
+
+\renewcommand\thesubsection{(\alph{subsection})}
+\titleformat{\subsection}
+{\normalfont\normalsize}{\thesubsection}{1em}{}
+
+\renewcommand\thesubsubsection{\hspace{10px}\roman{subsubsection}.}
+\titleformat{\subsubsection}
+{\normalfont\normalsize}{\thesubsubsection}{1em}{}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{POD 16}
+\newcommand{\AssignmentSub}{RSA Implementations}
+\newcommand{\StudentNames}{Ashton McDonald, Teasha Saima, Thorne Wolfenbarger}
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{POD 16: Below you will encrypt and decrypt messages using the RSA system.}
+\input{body.tex}
+
+\end{document}

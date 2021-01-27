@@ -1,0 +1,29 @@
+\subsection{Find the number of circular 3-permutations of 5 people.}
+A circular 3-permutation is similar to a 3-permutation with the special case where rotations of a given ordering are considered equivalent. For example, $(1,2,3)$ is considered to be the same as $(2,3,1)$. We can count the number of equivalent rotations by progressively rotating a list of 3 items by a single place multiple times until we reach the original ordering.
+
+When we consider $(1,2,3)$, we can also order it as $(2,3,1)$ or $(3,1,2)$. After rotating once more we return to $(1,2,3)$. This shows that there are a total of 3 distinct rotations for a given ordering of 3 items.
+
+Since there are a total of 3 distinct rotations for a given ordering of 3 items, we can use the division rule to eliminate and potential ``double-countings'' or orderings.
+
+\begin{theo}[The Division Rule]
+There are $n/d$ ways to do a task if it can be done using a procedure
+that can be carried out in n ways, and for every way w, exactly d of the n ways correspond
+to way w.
+\label{theo:DT}
+\end{theo}
+
+Using the division rule, we can consider every way w of the n total ways to order 3 people of 5 then note that these orderings come in groups of 3. That is, just as we can group $(1,2,3)$ $(2,3,1)$ and $(3,1,2)$, we also can group $(2,1,3)$ $(1,3,2)$ and $(3,2,1)$. This means that there are  a total of $P(5,3) / 3 = 20$ ways to order 3 people out of 5 around a circular table. $P(5,3)$ is the number of ways to order any 3 people from a set of 5, ignoring potential rotations.
+
+There is a small particularity that differentiates the argument we make here, and the division rule. Rather than generating the number of ways $w$ and mapping each way $w$ to $d$ rotations, we group the $n$ ways into groups of size $d$. This is an equivalent operation that only differs by the semantics of the sentence, rather than by the operation being performed.
+
+In conclusion, there are a total of 20 ways to perform a circular 3-permutation from 5 people.  
+
+\subsection{Find the number of circular 4-permutations of 6 people.}
+A similar argument to above can be made for this section. There are a total of $P(6,4) = 360$ ways to order 4 people out of a set of 6 people. There are rotation groups of size $4$ due to there being 4 possible distinct rotations of any given ordering of 4 people. That means the total number of ways to order 4 people of 6 at a circular table is $P(6,4) / 4 = 90$.
+
+\subsection{Find a formula for the number of circular r-permutations of n people.}
+The total amount of equivalent rotations for an ordering of length $r$ is exactly $r$. That is, you can rotate a list of length $r$ a total of $r$ times to return to the original configuration.
+
+Ignoring rotations, the total number of r-permutations of n people is trivially $P(n,r)$, by the definition of an r-permutation of n people.
+
+Using the same groupings of size $d$ argument as above, we can determine each group to be of size $r$. That means the number of ways to generate a circular r-permutation from n people can be expressed as $P(n,r) / r$. 

@@ -1,0 +1,18 @@
+How many different ways can you choose 0 items from a group of n items?
+
+This question initially seems to make no sense. Is the operation of selecting nothing from something possible? We know from arithmetic that you cannot divide a set of items into 0 groups, so why would this situation be any different? The question almost seems more philosophical than mathematical.
+
+\begin{theo}[Combination Symmetry Equality]
+C(n,r) = C(n,n-r)
+\label{theo:combinationSymmetryEq}
+\end{theo}
+
+We can represent our problem of choosing 0 items from a set of n items as $C(n,0)$. If we consider Theorem \ref{theo:combinationSymmetryEq}, this should be equivalent to $C(n,n)=1$. Does this make sense? Why is the answer not undefined or 0?
+
+We can consider our options if we were allowed to select any number of items from a set of n items. For each item, we can either include or exclude it from our decision, which implies that there are a total of $2^n$ subsets of any set of items. What does the subset that results from us excluding every item look like? It is the empty set $\{\}$. The empty set is exactly what it looks like to choose nothing. No other set is representative of choosing nothing.
+
+When we select 0 items, we are saying that we want a set of length 0, of which there are $2^0=1$ subsets. Itself.
+
+Therefore, there is only 1 way to select 0 items from a set, and we find that Theorem \ref{theo:combinationSymmetryEq} holds in this special case.
+
+I asked the internet and friends this question and received a total of 14 responses. 6 responsed 0, 5 responsed infinity, 5 responsed 1 with the remainer responding other values.

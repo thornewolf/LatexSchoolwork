@@ -1,0 +1,40 @@
+\subsection{Determine whether a tautology.}
+In order to determine whether $(\lnot p \wedge (p \rightarrow q)) \rightarrow \lnot q$ is a tautology we can generate a truth table that progressively builds up each part of the expression until we can easily evaluate the truth table for the entire expression.
+
+
+\begin{figure}[ht]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+    \hline
+    p & q & $\lnot p$ & $p \rightarrow q$ & $\lnot p \wedge (p \rightarrow q)$ & $\lnot q$ & $(\lnot p \wedge (p \rightarrow q)) \rightarrow \lnot q$ \\
+    \hline
+    T & T & F & T & F & F & T \\
+    \hline
+    T & F & F & F & F & T & T \\
+    \hline
+    F & T & T & T & T & F & F \\
+    \hline
+    F & F & T & T & T & T & T \\
+    \hline
+\end{tabular}
+\end{center}
+\caption{Truth table verifying whether the above statement is a tautology.}
+\end{figure}
+
+From the above truth table we can see that the rightmost column contains at least one ``False'' value. Since the rightmost column represents the truthiness values associated with the entire expression, we determine that this is not a tautology.
+
+\newpage
+\subsection{Example of a statement which is a contradiction}
+\begin{center}
+$p \lor (q \wedge p) \wedge \lnot ((w \wedge p) \lor p) \wedge (x \leftrightarrow x)$
+\end{center}
+
+The truth table containing these terms is quite large, so an excel spreadsheet verifying that this expression is a contradiction is provided below.
+
+
+\begin{figure}[ht]
+\begin{center}
+\includegraphics[width=300pt]{truthtable}
+\end{center}
+\caption{Truth table verifying that the above statement is a contradiction.}
+\end{figure}

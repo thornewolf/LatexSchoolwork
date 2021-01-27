@@ -1,0 +1,86 @@
+\newcommand{\EC}{Euler Circuit }
+
+
+
+Baby Euler's House can be modeled as an undirected multigraph containing 11 nodes, where each node represents a room within the house. Doorways connecting rooms can be represented as edges within this graph. For convenience, we will map each room to a number, and use these values as identifiers for the graph vertices. The mapping can be seen below in Table \ref{tab:RoomMapping}.\\
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{l|l}
+Room & Vertex Value \\
+\hline
+Garage & 1 \\
+Yard & 2 \\
+Dining Room & 3 \\
+Kitchen & 4 \\
+Piano Room & 5 \\
+Hall & 6 \\
+Family Room & 7 \\
+Living Room & 8 \\
+Master Bedroom & 9 \\
+Conservatory & 10 \\
+Study & 11 \\
+\end{tabular}
+\end{center}
+\caption{Mapping of Room Name to Vertex Value}
+\label{tab:RoomMapping}
+\end{table}
+
+\newpage
+\noindent
+Visualizing this graph now we can see the connections existing between any given pair of rooms. Fig. \ref{fig:EulerHouse1} shows these room connections.
+
+% https://bit.ly/3lr09eC
+\begin{figure}[ht]
+\centering
+    \includegraphics[width=0.8\linewidth]{BabyEulerGraph1}
+    \caption{An Undirected Multigraph Representing Baby Euler's House}
+    \label{fig:EulerHouse1}
+\end{figure}
+
+\noindent
+In order for baby Euler to be able to pass thru every door in the house and return to his original room, an Euler Circuit must exist in the graph. This is because passing thru every door is equivalent to traversing every edge within the graph and returning to the starting node. Theorem 1 in section 10.5 of Discrete Mathematics and its Applications (7th Edition) describes how we can determine whether an \EC can be constructed from this graph.
+
+\begin{theo}
+A connected multigraph with at least two vertices has an Euler Circuit if and only if each of
+its vertices has even degree.
+\end{theo}
+
+By finding the degree of each node, we determine whether an \EC can be constructed. Table \ref{tab:Graph1Deg} displays he degree of each node.
+
+\newpage
+
+\begin{table}[ht]
+\begin{center}
+\begin{tabular}{l|l}
+Node & Degree \\
+\hline
+1 & 2 \\
+2 & 5 \\
+3 & 2 \\
+4 & 4 \\
+5 & 2 \\
+6 & 7 \\
+7 & 2 \\
+8 & 2 \\
+9 & 2 \\
+10 & 2 \\
+11 & 2 \\
+\end{tabular}
+\end{center}
+\caption{Degree of Each Node Within Baby Euler's House}
+\label{tab:Graph1Deg}
+\end{table}
+
+It can be seen from this table that there exist exactly 2 nodes of odd-degree. Therefore no \EC can be constructed from this graph. Therefore baby Euler can not return to his starting room after passing thru each door within the house.
+
+Another question is, ``can baby Euler walk thru every foor exactly one and return to a different place than where he started?'' This is equivilent to asking, ``on the aforementioned graph, does an Euler Path exist?'' Theorem 2 from section 10.5 allows for us to determine this.
+
+\begin{theo}
+A connected multigraph has an Euler path but not an Euler Circuit if and only if it has exactly
+two vertices of odd degree.
+\end{theo}
+
+It was noted above that there are exactly two nodes within the graph that have an odd degree. (2 and 6/Yard and Hall) By Theorem 2 we can say, yes an Euler Path exists and therefore baby Euler can return to a different room after passing thru all doors.
+
+Lastly, the same two questions are asked with the modification that the front door of baby Euler's house is closed. This is equivalent to removing a edge within our graph that connects nodes 2 and 6. The removal of this edge results in $deg(2)=4$ and $deg(6)=6$, meaning all nodes in the resultant graph have an even degree. Reusing Theorem 1, we determine baby Euler can indeed pass thru every (open) door in his house and return to his starting room. Theorem 2 also allows us to determine that no Euler Path exists since there are not exactly two nodes of odd degree.

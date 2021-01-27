@@ -1,0 +1,58 @@
+\subsection{How many different passwords are available?}
+Within this computer system, a total of 26 lowercase letters, 26 uppercase letters, 10 digits, and 6 special characters are allowed. By the sum rule (Theorem \ref{theo:sumRule}) we can say there there are a total of $26+26+10+6=68$ ways to select each character in the password.
+
+\begin{theo}[The Sum Rule]
+If a task can be done either in one of $n_1$ ways or in one of $n_2$ ways, where
+none of the set of $n_1$ ways is the same as any of the set of $n_2$ ways, then there are $n_1 + n_2$
+ways to do the task.
+\label{theo:sumRule}
+\end{theo}
+
+Each valid password can either be 8,9,10,11, or 12 characters long. All password lengths are mutually exclusive and a continual application of the sum rule implies that the total amount of valid passwords can be represented as the sum of valid passwords in each length individually. In other words:
+
+\begin{equation}
+|\{valid~passwords\}| = \sum_{L=8}^{12}{valid~passwords~of~size~L}
+\label{eq:totalValidPasswords}
+\end{equation}
+
+We then need to find the number of valid passwords of size $l$. Since selecting each individual character within a password is a sequence of tasks, we can use the product rule to determine the total number of valid passwords of size $l$. There are no constraints imposed upon selecting each character in sequence, so for each character selected there are $68$ valid options. Applying the product rule we can see the following:
+
+\begin{equation}
+valid~passwords~of~size~L = \prod_{i=1}^{L}{68} = 68^{L}
+\label{eq:validPasswordsLenL}
+\end{equation}
+
+\begin{theo}[The Product Rule]
+Suppose that a procedure can be broken down into a sequence of
+two tasks. If there are $n_1$ ways to do the first task and for each of these ways of doing the first
+task, there are $n_2$ ways to do the second task, then there are $n_1n_2$ ways to do the procedure.
+\end{theo}
+
+By substituting Eq. \ref{eq:validPasswordsLenL} into Eq. \ref{eq:totalValidPasswords} we produce the following equation for the total number of valid passwords:
+
+\begin{equation}
+|\{valid~passwords\}| = \sum_{L=8}^{12}{68^L}
+\label{eq:totalValidPasswordsSubs}
+\end{equation}
+
+Evaluating this equation produces the value 9,920,671,339,261,325,541,376.
+
+\subsection{How many of these passwords contain at least one of the six special characters?}
+By enforcing the constraint that at least one of the passwords characters has to be a special character, the total amount of valid passwords is reduced. We can solve this by subtracting the number of passwords that contain no special characters from the total number of valid passwords. This is allowed because every password either contains no special characters or at least one special character.
+
+Counting the number of passwords with no special characters is very similar to the above method for counting the total number of passwords with one exception; only 62 options are available for each character. We can substitute 62 in the place of 68 in Eq. \ref{eq:totalValidPasswordsSubs} to produce:
+
+\begin{equation}
+|\{valid~passwords\}| = \sum_{L=8}^{12}{62^L}
+\label{eq:totalValidPasswordsNoSpecial}
+\end{equation}
+
+This equation evaluates to 3,279,156,377,874,257,103,616. Therefore the number of valid passwords that have at least one special character is:
+
+\begin{equation}
+|\{valid~passwords\}| = \sum_{L=8}^{12}{68^L} - \sum_{L=8}^{12}{62^L} = 6,641,514,961,387,068,437,760
+\label{eq:totalValidPasswordsSomeSpecial}
+\end{equation}
+
+\subsection{Time for a hacker to guess every possible password}
+At a rate of 1ns per password checked, it would take a hacker 9,920,671,339,261,325,541,376ns or 314,374 years to check every password. 

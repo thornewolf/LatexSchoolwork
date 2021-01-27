@@ -1,0 +1,29 @@
+% !TEX options=--shell-escape
+
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+
+\newmdtheoremenv{theo}{Theorem}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{POD 6}
+\newcommand{\AssignmentSub}{Translate Statements into English}
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{Problem Of Day 6}
+\input{body.tex}
+
+\end{document}

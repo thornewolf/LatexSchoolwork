@@ -1,0 +1,49 @@
+% !TEX options=--shell-escape
+
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+
+\newmdtheoremenv{theo}{Theorem}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{Homework 1}
+\newcommand{\AssignmentSub}{~ ~}
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{Question 1}
+\input{../POD1/body.tex}
+\newpage
+
+\section{Question 2}
+\input{../POD2/body.tex}
+\newpage
+
+\section{Question 3}
+\input{question3.tex}
+\newpage
+
+\section{Question 4}
+\input{../POD3/body.tex}
+\newpage
+
+\section{Question 5}
+\input{../POD4/body.tex}
+\newpage
+
+\section{Question 6}
+\input{question6.tex}
+
+\end{document}

@@ -1,0 +1,271 @@
+% !TEX options=--shell-escape
+
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{float}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{Lab Report 2: Composites Test}
+\newcommand{\AssignmentSub}{~}
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{Tensile Test Results}
+% Introduce the plots
+Within this lab we conducted a tensile test on three individual specimens. Figure \ref{fig:TensileStressstrain} displays the stress vs. strain curves for each of the tested specimens.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{Media/TensileTestStressStrainPlot}
+\caption{Stress vs. Strain plot for specimens 1,2, and 3}
+\label{fig:TensileStressstrain}
+\end{center}
+\end{figure}
+
+% Note that load is lbs and elongation is compared to a 1in extensometer gage section.
+
+% Tensile strength (ultimate tensile stress)
+The first item of note are the seemingly irregular results present within specimen 1. This data is the result of the extensometer slipping during the tensile test. As the ultimate tensile strength and the linear region are not significantly impacted by this extensometer splipping, we can still perform calculations using the data. Notice how in Figure \ref{fig:TensileStressstrain} all samples had similar ultimate tensile strengths. The ultimate tensile strengths of the three samples are provided within Figure \ref{tab:UltimateTensile}.
+
+
+\begin{figure}[H]
+\begin{center}
+  \begin{tabular}{|c|c|}
+    \hline
+    Specimen & Ultimate Tensile Strength\\ 
+             & (psi) \\
+    \hline
+    1 & 55,563 \\
+    2 & 53,678 \\
+    3 & 42,589 \\
+    \hline
+    Average & 50,610 \\
+    \hline
+  \end{tabular}
+  \caption{Ultimate tensile strength for each tensile test specimen.}
+  \label{tab:UltimateTensile}
+\end{center}
+\end{figure}
+
+There is a standard deviation of $\sigma= 5,723$~psi between the samples. On a percentage scale this is a standard deviation of $11\%$ about the mean. This large variance suggests that thate is a large amount of variability between samples regarding ultimate tensile strenth. Due to the removal of the extensometer at an extension of 0.0061 during two of the tests, the stress vs. strain curve flattens into a vertical line.
+
+% Young's modulus
+Using the slope of the stress vs. strain curve we can determine the Young's modulus of the samples. The calculated slopes are found in Figure \ref{tab:Youngs}.
+
+\begin{figure}[H]
+\begin{center}
+  \begin{tabular}{|c|c|}
+    \hline
+    Specimen & Calculated Young's modulus \\ 
+             & (psi) \\
+    \hline
+    1 & 3,426,106 \\
+    2 & 3,745,985 \\
+    3 & 3,102,727 \\
+    \hline
+    Average &  3,424,939 \\
+    \hline
+  \end{tabular}
+  \caption{Calculated Young's Modulus for each tensile test specimen.}
+  \label{tab:Youngs}
+\end{center}
+\end{figure}
+
+It can be seen from Figure \ref{tab:Youngs} that the standard deviation of Young's Modulus for the three specimen is $263,000~psi$. This is $8~\%$ of the average Young's Modulus. This suggests there is a low amount of variability between each of the samples.
+
+% Strength to weight ratio (weight density) for each specimen
+In order to determine the strength to weight ratio for we can consider Equation \ref{eq:StrengthToWeight}.
+
+\begin{equation}
+  r = \frac{\sigma_{ult}}{\gamma} = \frac{\sigma_{ult} \cdot V}{w}
+  \label{eq:StrengthToWeight}
+\end{equation}
+
+Where $r$ is the strength to weight ratio and $\gamma$ is the specific weight of the sample as calculated by the formula $\gamma = \rho g$. $V$ is the volume of the material and $w$ is the weight. $r$ can be calculatedby substituting in the appropriate values.
+
+\begin{figure}[H]
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|}
+      \hline
+      Specimen & $\sigma_{ult}$ & $V$ & $w$ & $r$ \\
+               & (psi) & ($in^3$) & ($in$) & ($in$) \\
+      \hline
+      1 & 55,563 & 0.625 & 0.026 &  1,329,137.61 \\
+      2 & 53,678 & 0.595 & 0.026 &  1,221,768.27 \\
+      2 & 42,589 & 0.668 & 0.026 &  1,088,314.51 \\
+      \hline
+      Average &&&&  1,213,073.46 \\
+      \hline
+  \end{tabular}
+  \caption{Dimensions and derived quantities for each of the samples}
+  \label{tab:SpecimenDimensions}
+\end{center}
+\end{figure}
+
+\section{Comparison to published values}
+% published values using the CES EduPack data. Note that CES EduPack will not include all possible layups.  It is suggested that you find the one(s) that are closest to your own composite for the approximate comparison.
+% Discuss some of the possible factors that might affect your experimental results.
+In order to assist in determining the validity of the results found in this lab, I compared the experimental properties determined prior with approximately equivalent published values from GRANTA EduPack 2020. The comparisons can be seen in Figure \ref{tab:PropertyComparison}.
+
+
+\begin{figure}[H]
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+      \hline
+      Property & Experimental & Published & \% Difference \\
+      \hline
+      Ult. Tensile Strength & 50ksi & 79.8 - 152ksi & -57\% \\
+      Young's Modulus & 3,424ksi & 10,000 - 21,800ksi & -78\% \\
+      \hline
+  \end{tabular}
+  \caption{A comparison between the experimental and published values.}
+  \label{tab:PropertyComparison}
+\end{center}
+\end{figure}
+
+It can be seen from Figure \ref{tab:PropertyComparison} that our experimental samples within this lab do not closely match with the reported CFRP, isotropic epoxy matrix (GRANTA, 2020). This large difference is likely due to the fact that the samples tested within this lab were kevlar composite and CFRP is a carbon fiber composite. In general, there is a similarity between the order of magnitudes for each composite, so we have no reason to believe the results from this test are out of the ordinary.
+
+\section{Bend Test Results}
+In the second half of the lab we conducted a bend test on two distinct honeycomb bending specimens. Figure \ref{fig:BendingForceDisplacement} displays the force vs. displacement plots for each of the samples.
+
+% Provide a plot for each bend specimen (force vs displacement)
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=\textwidth]{Media/BendingForceDisplacementPlot}
+    \caption{Force (lbf) vs. displacement (in) plot for each tested specimen.}
+    \label{fig:BendingForceDisplacement}
+  \end{center}
+\end{figure}
+
+It can be seen from the overlapping of the data on this plot that specimen 1 and specimen 2 performed similarly. In order to generate a valuable set of data for the bend test we can calculate face bending stress and core shear stress for each of the samples.
+
+Using the measured dimensions of each of the bending test specimen we can extract an extimate for both the core shear stress and the facing bending stress observed throughout the test. Equation \ref{eq:CSS} is the equation for calculating core shear stress.
+
+\begin{equation}
+  \tau = \frac{P}{(d+c)b}
+  \label{eq:CSS}
+\end{equation}
+
+Where:
+\begin{figure}[H]
+  \begin{center}
+    \begin{tabular}{cl}
+      $\tau=$ & core shear stress \\
+      $P=$ & maximal test load \\
+      $d=$ & sandwich thickness \\
+      $c=$ & core thickness \\
+      $b=$ & sandwich width \\
+    \end{tabular}
+  \end{center}
+\end{figure}
+
+The equation for facing bending stress can be seen in Equation \ref{eq:FBS}.
+
+\begin{equation}
+  \sigma = \frac{PL}{2t(d+c)b}
+  \label{eq:FBS}
+\end{equation}
+
+Where:
+\begin{figure}[H]
+  \begin{center}
+    \begin{tabular}{cl}
+      $\sigma=$ & facing bending stress \\
+      $t=$ & thickness of single facing \\
+      $L=$ & span length between supports \\
+    \end{tabular}
+  \end{center}
+\end{figure}
+
+% Compare the facing bending stresses to approximate material tensile strength properties found using CES EduPack for similar materials.
+Using these two equations we can determine the approximate core shear stress and facing bending stress for both of the samples. Figure \ref{tab:BendStressCalculations} contains the necessary information for calculating these properties.
+
+\begin{figure}[H]
+\begin{center}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+      \hline
+      Sample & $P$ & $d$ & $c$ & $b$ & $t$ & $L$ & $\tau$ & $\sigma$ \\
+             & ($lbf$) & ($in$) & ($in$) & ($in$) & ($in$) & ($in$) & ($psi$) & ($psi$) \\
+      \hline
+      1 & 79.72 & 0.79 & 0.716 & 0.93 & 0.074 & 12 & 56.93 & 4615.59 \\
+      2 & 77.92 & 0.787 & 0.699 & 1.09 & 0.088 & 12 & 49.96 & 3269.71 \\
+      \hline
+      Average &&&&&&& 53.45 & 3942.65 \\
+      \hline
+  \end{tabular}
+  \caption{Sample stress calculations.}
+  \label{tab:BendStressCalculations}
+\end{center}
+\end{figure}
+
+We then can compare these calculated values to the reported ultimate stress values as seen in Figure \ref{tab:BendStressComparison}.
+
+\begin{figure}[H]
+\begin{center}
+  \begin{tabular}{|c|c|c|c|}
+      \hline
+      Sample & $\tau_{calc}$ & $\tau_{ult,reported}$ & Percent Difference \\
+             & ($psi$) & ($psi$) & \\
+      \hline
+      1 & 53.45psi & 116ksi & -100\% \\
+      2 & 47.95psi & 116ksi & -100\% \\
+      \hline
+      Sample & $\sigma{calc}$ & $\sigma_{ult,reported}$ & Percent Difference \\
+      Sample & $(ksi)$ & $(ksi)$ & \\
+      \hline
+      1 & 4.62 & 29 & -84\% \\
+      2 & 3.27 & 29 & -89\% \\
+      \hline
+  \end{tabular}
+  \caption{Sample stress comparisons.}
+  \label{tab:BendStressComparison}
+\end{center}
+\end{figure}
+
+% What does this comparison tell you about failure in bending? Talk about both stresses here.
+Using the information seen in Figure \ref{tab:BendStressComparison} we can see that the failure in bending was likely caused by compressive stresses on the faces of the samples. I used the compressive failure values for $\sigma_{ult,reported}$ because the specimen should an equal in magnitude compressive and tensile stresses during the bending test. Since the composite is weaker in compression, it would fail in compression before tension. This conclusion was made because the estimated face shear stress was not close to the listed carbon fiber failure stress. This means that there is a possibility that the failure occured within the honeycomb structure.
+
+In either case, the calculated stress does not match the reported ultimate stresses. This is likely due to an error in the measurement of the honeycomb structure that causes unexpectedly low calculated stresses.
+
+\section{Appearances and Failure Modes}
+\subsection{Bending Specimen}
+% Provide a description of the appearance of the failed beam specimen(s).
+The failed beam specimen contained an indent at approximately the location where the central pivot from the testing rig was placed. The failed specimen can be seen in Figure \ref{fig:FailedBending1}.
+
+\begin{figure}[H]
+  \begin{center}
+    \includegraphics[width=\textwidth]{Media/BrokenBendSpecimen}
+    \caption{One of the failed bending test specimen.}
+    \label{fig:FailedBending1}
+  \end{center}
+\end{figure}
+
+% Describe what you to believe to be the mode of failure.
+% Research and describe the different types of failure possible in fiber composites, and discuss which failure modes you might be observing in both the beam specimens and the tension specimens (provide citations!).
+From this appearance of the failed specimen I have determined the mode of failure to be a core failure in shear. I have determined this by visually inspecting the failed bending specimen and applying an understanding that honeycomb structures are strong in compression and weak in bending. This lends to the idea that there is failure at the core. It is also possible for the mode of failure to be in tension along the sample face, where the kevlar composite exists. The stresses were much higher there than at the core and it is possible that the face would need to yield before the honeycomb structure does. Based on the cracking noises observed by the testing team during the bend test, I conclude that the honeycomb likely was the failure mechanism in this test.
+
+\subsection{Tensile Specimen}
+The tensile specimen from a visual inspection after failure clearly occured in tension. This is due to the fact that we layed-up the fibers in the same direction that the tensile load was applied. Eventually the fibers gave out in tension and the specimen as a whole failed. No photos of this specimen were obtained.
+
+\section{Differences in Various Materials}
+% Provide a discussion on how fiber composites may behave differently than homogeneous materials, such as the aluminum alloy you tested earlier in the semester.
+Fiber composites may often behave differently than homogeneous materials due to the fundamental nature in how the two are formed. Fiber composites have the capability to be woven such that they are stronger in one direction. This sort of customization is not something that homogenous materials can afford. As a result, we can see different performances for the tested composite samples along different axes. Multiple distinct fibers exist for the production of fiber composites. These fibers could be a carbon fiber or kevlar for example. The differences in chemistries between these two fibers is the reason why there is a strength difference between carbon fiber, kevlar or second generation composite fibers.
+% Discuss the different types of fibers (in terms of chemistry) available for fiber composites.
+
+\section{A Comparison between ``prepregs" and wet layups}
+% What are advantages and disadvantages of both techniques? 
+Prepregs offer an immediate form of convenience over wet layups. Prepregs have carefully measured levels of resin along the composite fibers allowing for maximal strength while minimizing weight. Wet layups require measurement during application time, which is more difficult to perform correctly. Wet layups do have the advantage in flexibility. Due to the fact that the fibers can be cut and places dynamically, more variability can be achieved during the manufacturing process. There is a direct tradeoff between flexability and ease of manufacturing.
+
+\end{document}

@@ -1,0 +1,469 @@
+\documentclass[12pt]{report}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage{sectsty}
+\usepackage{pdfpages}
+% \usepackage{booktabs}
+\usepackage[export]{adjustbox}
+\usepackage{amssymb}
+\usepackage{cancel}
+\usepackage[numbered]{matlab-prettifier}
+\usepackage{circuitikz}
+\usepackage{xfrac}
+\usepackage{lmodern}
+\usepackage{multicol}
+\usepackage[justification=centering]{caption}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage[list=true]{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{enumitem}
+
+\newcommand{\eqname}[1]{\tag*{#1}}% Tag equation with name
+\lstMakeShortInline[style=Matlab-editor]*
+\usetikzlibrary{arrows}
+\graphicspath{{images/}}
+\usetikzlibrary{calc,patterns,angles,quotes}
+
+\allsectionsfont{\centering}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand{\thefootnote}{\arabic{footnote}}
+\setcounter{tocdepth}{3}
+
+\begin{document}
+
+\input{titlepage}
+\pagenumbering{roman}
+{\tableofcontents\let\clearpage\relax\listoffigures}
+\clearpage
+\pagenumbering{arabic}
+\newpage
+\begin{flushleft}
+% ---------------------------------------------------------------------------- %
+\section{Conceptualize the Problem}
+% ---------------------------------------------------------------------------- %
+
+\begin{figure}[h]
+  \begin{minipage}[c]{.4\textwidth}
+  \input{concept}
+\end{minipage}%
+\begin{minipage}[c]{.6\textwidth}
+  The pendulumn system consists of two rigid bars rotating about one end,
+  attached at the opposite ends by a linear spring.
+\end{minipage}
+\end{figure}
+
+\subsection{Constants and Assumptions}
+\begin{tabular}{ll@{\hskip .75in}l}
+ \multicolumn{1}{c}{Constants:} && \multicolumn{1}{c}{Assumptions:} \\
+ Bar Mass: &$m$ = 0.25kg & No Losses\\
+ Bar Length: &$L$ = 0.5m & Released from Rest\\
+ Gravity: &$g$ = 9.81$\sfrac{m}{s^2}$ &Slender Bars \\
+ Linear Spring: &&Planar\\
+ \quad Spring Coefficient:& $k = 25~\sfrac{N}{m}$ &Rigid-Body Dynamics \\
+ \quad Unstretched Length:& $L$ \\
+\end{tabular}
+\vspace{5ex}
+
+We are asked to determine the following: \\
+\begin{enumerate}
+  \item The 6 Equations / 6 Unknowns for the system to solve for the Equations of Motion.
+  \item Integrate the Equations of Motion using various initial conditions.
+  \begin{enumerate}
+    \item $\theta_o = \sfrac{\pi}{12}~rad, \quad \phi_o = \sfrac{\pi}{12}~rad$
+    \item $\theta_o = \sfrac{-\pi}{12}~rad, \quad \phi_o = \sfrac{\pi}{12}~rad$
+    \item $\theta_o = \sfrac{\pi}{36}~rad, \quad \phi_o = \sfrac{\pi}{12}~rad$
+  \end{enumerate}
+  \item Linearize the Equations of Motion assuming small angular positions and velocities
+  (i.e. small angle approximation $\sin(x) \approx x,~\cos(x) \approx 1$)
+  \begin{itemize}
+    \item Determine the A matrix below.
+  \end{itemize}
+\end{enumerate}
+\begin{equation}
+\begin{bmatrix}
+  \ddot{\theta} \\
+  \ddot{\phi}
+\end{bmatrix}
+=
+\begin{bmatrix}
+A
+\end{bmatrix}
+\begin{bmatrix}
+\theta \\
+\phi
+\end{bmatrix}
+\nonumber
+\end{equation}
+\begin{enumerate}[resume]
+  \item Find the natural frequencies of the system and their respective eigenvectors
+  using the eigenvalues and eigenvectors of [A].
+  \item Using information from (5), solve for the analytical solution to the
+  linearized Equations of Motion and plot them for the initial conditions defined in (2).
+\end{enumerate}
+\newpage
+
+% ---------------------------------------------------------------------------- %
+\section{Free Body Diagram}
+% ---------------------------------------------------------------------------- %
+\begin{figure}[ht]
+   \begin{minipage}[c]{.225\textwidth}
+      \input{fbdleft}
+   \end{minipage}%
+   \begin{minipage}[c]{.55\textwidth}
+     \center
+     \begin{tabular}{rl}
+     $F_s$:&Force onto bar by the spring\\
+     $mg$:&Mass $\cdot$ gravity, weight of each bar\\
+     $G$:&Center of gravity of each bar\\
+     $\theta,~\phi$:& Angle of bar relative to vertical\\
+     $A_n,~C_n$:& Reaction forces in the normal \\ & direction at pin\\
+     $A_t,~C_t$:& Reaction forces in the tangential \\ & direction at pin\\
+   \end{tabular}
+   \end{minipage}%
+  \begin{minipage}[c]{.225\textwidth}
+    \vspace{2.8ex}
+    \hspace{2ex}
+     \input{fbdright}
+  \end{minipage}
+\end{figure}
+\vspace{-3ex}
+\subsection{Acceleration Diagram}
+\begin{figure}[ht]
+   \begin{minipage}[c]{.25\textwidth}
+      \input{adleft}
+   \end{minipage}%
+   \begin{minipage}[c]{.5\textwidth}
+     \center
+     \begin{tabular}{rl}
+     $\ddot{\theta}$:& Acceleration of the left bar\\
+     $\ddot{\phi}$:& Acceleration of the right bar\\
+   \end{tabular}
+   \end{minipage}%
+  \begin{minipage}[c]{.25\textwidth}
+    \hspace{2ex}
+     \input{adright}
+  \end{minipage}
+\end{figure}
+\vspace{-5ex}
+% ---------------------------------------------------------------------------- %
+\section{Coordinate Frame}
+% ---------------------------------------------------------------------------- %
+\begin{figure}[ht]
+    \begin{subfigure}[t]{.5\textwidth}
+      \center
+      \caption{Separate Coordinate Frames}
+      \label{coord:a}
+      \input{coord}
+      \vspace{2ex}
+    \end{subfigure}%
+\begin{subfigure}[t]{.5\textwidth}
+      \center
+      \caption{Unit Vector Calculations}
+      \label{coord:b}
+      \input{normtan} \\
+      \begin{tabular}{rl}
+        $\hat{e_n}:$ & $\left[\textrm{-}\sin(\varphi)\hat{\textrm{\i}}+\cos(\varphi)\hat{\textrm{\j}}\right]$ \\
+        $\hat{e_t}:$ & $\left[\cos(\varphi)\hat{\textrm{\i}}+\sin(\varphi)\hat{\textrm{\j}}\right]$ \\
+      \end{tabular}
+    \end{subfigure}
+    \caption{Visual Representation of Coordinate Frame Unit Vectors}
+\end{figure}
+Due to the complexity of the system if it were to be defined in cartesian coordinates,
+we determined that the motion of the system would most effectively be represented by two separate
+normal-tangential coordinate frames because the motion of each bar is purely rotational, where the
+center of mass of each bar is following a curve. As seen in Figure (\ref{coord:a}), two coordinate
+frames were used, one for each bar. Similarly, Figure (\ref{coord:b}) shows how the
+unit vectors are calculated as well as the path the center of mass travels.
+\newpage
+
+% ---------------------------------------------------------------------------- %
+\section{Sum of Forces}
+% ---------------------------------------------------------------------------- %
+The six equations that represent the forces on the system are comprised of four force summations and two moment equations,
+\begin{align}
+  \sum F_n &= m\frac{L}{2}\dot{\theta}^2 = F_{s_n} + A_n - mg\cos(\theta) \label{force_left_bar_theta_normal} \\ \eqname{Sum of Normal Forces on the Left Bar ($\theta$)} \\
+  \sum F_t &= m\frac{L}{2}\ddot{\theta} = F_{s_n} + A_t- mg\sin(\theta) \label{force_left_bar_theta_tangential} \\ \eqname{Sum of Tangential Forces on the Left Bar ($\theta$)} \\
+  \sum F_n &= m\frac{L}{2}\dot{\phi}^2 = F_{s_n} + C_n - mg\cos(\phi) \label{force_right_bar_phi_normal} \\ \eqname{Sum of Normal Forces on the Right Bar ($\phi$)} \\
+  \sum F_t &= m\frac{L}{2}\ddot{\phi} = F_{s_n} + C_t- mg\sin(\phi) \label{force_right_bar_phi_tangential} \\ \eqname{Sum of Tangential Forces on the Right Bar ($\phi$)} \\
+  \sum M_A &= -\left(\frac{L}{2} \cdot mg\sin(\theta)\right) + \left(F_{st} \cdot L\right) = \frac{1}{3}mL^2\ddot{\theta} \label{moment_left_bar_theta} \\ \eqname{Sum of Moments about A ($\theta$)} \\
+  \sum M_C &= -\left(\frac{L}{2} \cdot mg\sin(\phi)\right)+\left(F_{st} \cdot L\right) = \frac{1}{3}mL^2\ddot{\phi} \label{moment_right_bar_theta} \\ \eqname{Sum of Moments about C ($\phi$)}
+\end{align}
+Where: \\
+~\\
+\begin{tabular}{rl}
+$\theta$:& Position of the left bar. \\
+$\phi$:& Position of the right bar. \\
+$\dot{\theta}$:& Angular velocity of the left bar. \\
+$\dot{\phi}$:& Angular velocity of the right bar. \\
+$\ddot{\theta}$:& Angular acceleration of the left bar. \\
+$\ddot{\phi}$:& Angular acceleration of the right bar. \\
+$A$:& Reaction force in the normal or tangential direction on the left bar. \\
+$C$:& Reaction force in the normal or tangential direction on the right bar. \\
+$F_s$:& Force due to the spring in either the normal or tangential direction. \\
+$m,~L,~g$: & Mass, length of each bar, and gravity, respectively.
+\end{tabular}
+
+% ---------------------------------------------------------------------------- %
+\section{Knowns and Unknowns} \label{knownsandunknowns}
+% ---------------------------------------------------------------------------- %
+\begin{tabular}{ll@{\hskip .75in}ll}
+  \multicolumn{1}{c}{Knowns:} && \multicolumn{1}{c}{Unknowns:} \\
+  Mass: &$m$ = 0.25kg & Reaction Forces: & $A_n,~A_t$ \\
+  String Length: &$L$ = 0.5m & & $C_n,~C_t$\\
+  Gravity: &$g$ = 9.81$\sfrac{m}{s^2}$& Angular Accelerations: & $\ddot{\theta},~\ddot{\phi}$ \\
+  Linear Spring: \\
+  \quad Spring Coefficient:& $k = 25~\sfrac{N}{m}$\\
+  \quad Unstretched Length:& $L$ \\
+  State Variables: \\
+  \quad Angular Position: &$\theta,~\phi$ & \\
+  \quad Angular Velocity: &$\dot{\theta},~\dot{\phi}$ & \\
+\end{tabular}
+\vspace{2ex}
+
+Since there are six equations and six unknowns, we can solve for the equations of
+motion analytically using Matlab.
+
+% ---------------------------------------------------------------------------- %
+\section{Constraints}
+% ---------------------------------------------------------------------------- %
+No constraint equations were needed to find a solution to the system.
+% ---------------------------------------------------------------------------- %
+\section{Solve for the Equations of Motion}
+% ---------------------------------------------------------------------------- %
+Using Matlab to confirm calculations made by hand, we can linearize the equations
+of motion derived from the six force summations shown above.
+Note that the the non-linearized Equations of Motion are not shown here due to
+complexity; they are equations (\ref{eq:thetanasty}) and (\ref{eq:phinasty})
+in the Appendix (\ref{appendix}).
+\begin{lstlisting}[frame=lines,style=Matlab-editor,basicstyle = \mlttfamily]
+% Substituting the respective angle for sin terms and 1 for cosine,
+% in addition, the square of a "small angle" = 0
+LinEOMs = subs([x.thetaddot,x.phiddot],...
+    {str2sym('sin(theta)'),str2sym('cos(theta)'),str2sym('sin(phi)'),str2sym('cos(phi)') ...
+    str2sym('sin(phi - theta)'),str2sym('thetadot^2'),str2sym('phidot^2')},...
+    {'theta',1,'phi',1,str2sym('phi - theta'),0,0});
+
+% The Ignore Analytic Constraints argument allows MATLAB to make certain
+% subsitutions that would normally not be allowed, such as (sqrt(x)^2) = x
+LinEOMs = simplify(LinEOMs,'IgnoreAnalyticConstraints',true);
+
+% Stiffness Matrix (Coefficients of Theta and Phi)
+a = equationsToMatrix(LinEOMs,[theta phi]);
+\end{lstlisting}
+
+After linearization, the equations of motion equate to
+\begin{equation}
+\ddot{\theta} = \frac{-3\left(gm\theta - 2kL\phi + 2kL\theta\right)}{2Lm}
+\end{equation}
+\begin{equation}
+\ddot{\phi} = \frac{-3\left(gm\phi + 2kL\phi - 2kL\theta\right)}{2Lm}
+\end{equation}
+Therefore, the coefficient matrix, or the stiffness matrix, is
+$$
+\begin{bmatrix} A \end{bmatrix} =
+\begin{bmatrix}
+\frac{-3(gm + 2kL)}{2Lm} & \frac{3k}{m} \\
+\frac{3k}{m} & \frac{-3(gm + 2kL)}{2Lm}
+\end{bmatrix}
+$$
+Taking the general vibration / mode shape equation,
+$$[m] \begin{bmatrix} \ddot{\theta}\\ \ddot{\phi} \end{bmatrix} +
+[k] \begin{bmatrix} \theta \\ \phi \end{bmatrix} =
+\begin{bmatrix} 0\\ 0 \end{bmatrix}$$
+Where $[m]$ is the mass matrix and $[k]$ is the stiffness matrix. \\
+This is analogous to the general eigenvalue problem,
+$$
+[A]\{V\} = \lambda[I]\{V\}
+$$
+Where the eigenvalues ($\lambda$) are equivalent to the square of the angular frequency,
+$\omega^2$, and the eigenvectors are ratios representing the mode shape of the
+ vibration. \\
+Using the stiffness matrix from above and creating a mass matrix, we can find the
+eigenvalues and eigenvectors using the built in \lstinline[style=Matlab-editor]!eig!
+ function in Matlab. \\
+Finally, the solution to the system will be of the form
+$$
+\begin{bmatrix} \theta(t)\\ \phi(t) \end{bmatrix} =
+\begin{bmatrix} \theta_0\\ \phi_0 \end{bmatrix}
+\left(C_1\cos(\omega_1 t) + C_2\sin(\omega_2 t)\right)
+$$
+Where $\theta_0$ and $\phi_0$ are the eigenvalues corresponding to the
+eigenvectors of $[A]$.
+Taking the derivative,
+$$
+\begin{bmatrix} \dot{\theta}(t)\\ \dot{\phi}(t) \end{bmatrix} =
+\begin{bmatrix} \theta_0\\ \phi_0 \end{bmatrix}
+\left(C_3\sin(\omega_1 t) + C_4\cos(\omega_2 t)\right)
+$$
+We now have 4 equations with 4 unknowns, since $\theta(t)$ and $\phi(t)$ at $t=0$ are simply
+the initial positions of the system when released from rest; similarly,
+$\dot{\theta}(t)$ and $\dot{\phi}(t)$ at $t=0$ are the initial velocities when released from rest,
+which for each case in this problem are equal to zero. \\
+Solving each case from the second problem statement,
+\begin{enumerate}[label=(\alph*)]
+  \item $\theta_o = \sfrac{\pi}{12}~rad, \quad \phi_o = \sfrac{\pi}{12}~rad$
+  $$
+  C_1 = 0 \quad C_2 = 0 \quad C_3 = \sfrac{\pi}{12} \quad C_4 = 0
+  $$
+  \item $\theta_o = \sfrac{-\pi}{12}~rad, \quad \phi_o = \sfrac{\pi}{12}~rad$
+  $$
+  C_1 = \sfrac{\pi}{12} \quad C_2 = 0 \quad C_3 = 0 \quad C_4 = 0
+  $$
+  \item $\theta_o = \sfrac{\pi}{36}~rad, \quad \phi_o = \sfrac{\pi}{12}~rad$
+  $$
+  C_1 = \sfrac{\pi}{36} \quad C_2 = 0 \quad C_3 = \sfrac{\pi}{18} \quad C_4 = 0
+  $$
+\end{enumerate}
+We can see that in cases (a) and (b), the behavior of the system is purely sinusoidal,
+whereas in case (c) the angular position is dependent on both a sine and cosine term;
+this behavior is evident later when analyzing the system behavior in Figures
+(\ref{fig:analyticals}) and (\ref{fig:linears}). \\
+\newpage
+% ---------------------------------------------------------------------------- %
+\section{Solve the Equations of Motion}
+% ---------------------------------------------------------------------------- %
+Using the \lstinline[style=Matlab-editor]!ode45! function in Matlab, numerical
+solutions were generated from the Equations of Motion as a function time. The solutions
+ were plotted for each set of initial conditions depicting the behavior of the
+ system (angular position) versus time. \\
+\begin{figure}[!ht]
+  \caption{Analytical vs Numerical Solution Motion Behavior Plots}
+  \label{fig:analyticals}
+  \begin{subfigure}[t]{\textwidth}
+  \includegraphics[center]{nonlinear1}
+  \caption{Angular Position vs. Time ($\theta_o:~15^\circ,~\phi_o:~15^\circ$)}
+  \label{fig:+15+15}
+\end{subfigure}
+\end{figure}
+It can be seen in Figure (\ref{fig:+15+15}) that for the first case where both bars start at the same
+angle of 15 degrees, the angular displacement of each bar is exactly in sync with
+the other. This makes sense as the spring between both bars is not being stretched
+nor compressed.
+~\\
+\begin{figure}[!ht] \ContinuedFloat
+\begin{subfigure}[t]{\textwidth}
+  \includegraphics[center]{nonlinear2}
+  \caption{Angular Position vs. Time ($\theta_o:~\textrm{-}15^\circ,~\phi_o:~15^\circ$)}
+  \label{fig:-15+15}
+\end{subfigure}
+\end{figure}
+In Figure (\ref{fig:-15+15}) the angular displacements of the two bars are always opposite of each other.
+This is because the bars of equal mass and length start at exact opposite angular displacements. \\
+\newpage
+\begin{figure}[!ht] \ContinuedFloat
+\begin{subfigure}[t]{\textwidth}
+  \includegraphics[center]{nonlinear3}
+  \caption{Angular Position vs. Time ($\theta_o:~5^\circ,~\phi_o:~15^\circ$)}
+  \label{fig:+05+15}
+\end{subfigure}
+\end{figure}
+Figure (\ref{fig:+05+15}) shows a case where the initial angular displacements of the bars have
+different starting angles in different positive deflection. The results is a mix
+of the two previous vibration modes, the larger dominating period is same with the
+first case while the smaller period is the same as the second case. \\
+Similarly, the behavior of the analytical (linearized) solution can be seen in
+the plots of Figure (\ref{fig:linears}) which are compared to the numerical solutions from
+Figure (\ref{fig:analyticals}). \\
+\begin{figure}[!ht]
+  \caption{Numerical Solution Motion Behavior Plots}
+  \label{fig:linears}
+  \begin{subfigure}[t]{\textwidth}
+    \includegraphics[center]{linear1}
+    \caption{Angular Position vs. Time ($\theta_o:~15^\circ,~\phi_o:~15^\circ$)}
+    \label{fig:linear+15+15}
+\end{subfigure}
+\end{figure}
+In Figure (\ref{fig:linear+15+15}) it appears that the linearization equations
+accurately depict the motion of the system initially, but as time goes on, the slight error
+from the assumptions made during linearization, such as the small angle approximation,
+begin to show. After ten seconds, the angular position of each solution is still nearly
+identical to the other. By evaluating the angular frequency in the numerical ($\omega_N$) and
+analytical ($\omega_A$) solution, the percent error can be found using the
+\lstinline[style=Matlab-editor]!event! option for \lstinline[style=Matlab-editor]!ode45!.
+Therefore, in the case of the initial angles of release for both bars being
+ $\sfrac{\pi}{12}$, the percent error is
+% \newpage
+$$\textrm{\% Error} = \left|\frac{\omega_A - \omega_N}{\omega_N}\right| \cdot 100
+\quad\therefore\quad
+\left|\frac{0.1743 - 0.2132}{0.2132}\right| \cdot 100 =
+\%$$
+\begin{figure}[!ht] \ContinuedFloat
+\begin{subfigure}[t]{\textwidth}
+    \includegraphics[center]{linear2}
+    \caption{Angular Position vs. Time ($\theta_o:~\textrm{-}15^\circ,~\phi_o:~15^\circ$)}
+    \label{fig:linear-15+15}
+  \end{subfigure}
+\end{figure}
+Figure (\ref{fig:linear-15+15}) again shows the initial accuracy of the linearized equations of
+motion, but the variation in period becomes apparent more rapidly. This is likely due to the
+fact that the frequency of oscillations in this case is much greater than that shown in
+Figure (\ref{fig:linear+15+15}), resulting in the error in phase, relative to the non-linearized
+numerical solution, gaining magnitude faster. This results in the linearized soltion being nearly
+a full period away from the numerical solution after only a few seconds, over twice as quickly as
+in Figure (\ref{fig:linear+15+15}).\\
+\begin{figure}[!ht] \ContinuedFloat
+  \begin{subfigure}[t]{\textwidth}
+    \includegraphics[center]{linear3}
+    \caption{Angular Position vs. Time ($\theta_o:~5^\circ,~\phi_o:~15^\circ$)}
+    \label{fig:linear+05+15}
+  \end{subfigure}
+\end{figure}
+Finally, Figure (\ref{fig:linear+05+15})
+
+\null\vfill
+\newpage
+\vfill\null
+\newpage
+% ---------------------------------------------------------------------------- %
+\section{Does it Make Sense?}
+% ---------------------------------------------------------------------------- %
+\subsection{Units}
+
+% TODO Actual unit check here?
+
+Checking with the MATLAB symbolic units tool (from Section \ref{appendix:numerical}): \\
+~\\
+\input{unitcheck}
+\newpage
+\subsection{Magnitude}
+Looking at Figure (\ref{fig:+15+15}), the amplitude and period of both $\phi$ and $\theta$ perfectly overlap with each other. This is expected due to the fact that two pendulums that begin oscillating when released from the same state will never have a change in their relative positions. This means that the spring connecting the two is neither streched nor compressed throughout the system's oscillations. This is valid because the amplitude and period of oscillation never changes in this lossless system. \\
+
+The fact that the equation takes the former's form supports our idea that this behavior makes physical sense when $\theta_0 = \phi_0$. For initial conditions where $\theta_0 \neq \phi_0$ or $\ddot{\theta_0} \neq \ddot{\phi_0}$ we find a non-zero $[k]$, which lines up with the physical concept that the bars will inconsistently oscillate. \\
+Lastly, in the special case where $\theta_0 = -\phi_0$, we can see a consistent oscillation in both variables where they remain equal and opposite to eachother. Once again, envisioning this system will show that this behavior is aligned with what we would expect from a physical system with these initial conditions and without losses. The behavior is plotted in Figure (\ref{fig:-15+15}).
+
+\section{Appendix} \label{appendix}
+\subsection{Attributions}
+\onehalfspacing
+\begin{tabular}{ll}
+Jeffrey Chen & \\
+Thorne Wolfenbarger &\\
+Trey Dufrene & \\
+Joint Effort &
+\end{tabular}
+\singlespacing
+
+\newpage
+\subsection{Analytical Solution}
+\begin{equation}
+  \ddot{\theta} = \frac{\frac{-(3(gms_{\theta} - 2kLc_{\theta} - 2kLs_{\phi - \theta} + (2kL^2c_{\theta})}{(L^2(c_{\theta} - c_{\phi})^2 + L^2(s_{\phi} - s_{\theta} + 1)^2)^{\sfrac{1}{2}}}
+  + \frac{2kL^2s_{\phi - \theta}}{(L^2(c_{\theta} - c_{\phi})^2 + L^2(s_{\phi} - s_{\theta} + 1)^2)^{\sfrac{1}{2}}}}{2Lm}
+  \label{eq:thetanasty}
+\end{equation}
+\begin{equation}
+  \ddot{\phi} = \frac{\frac{-3(2kLc_{\phi} + gms_{\phi} - 2kLs_{\theta - \phi} - (2kL^2c_{\phi})}{(L^2(c_{\phi} - c_{\theta})^2 + L^2(s_{\phi} - s_{\theta} + 1)^2)^{\sfrac{1}{2}}} + \frac{2kL^2s_{\theta - \phi}}{(L^2(c_{\phi} - c_{\theta})^2 + L^2(s_{\phi} - s_{\theta} + 1)^2)^{\sfrac{1}{2}}}}{2Lm}
+  \label{eq:phinasty}
+\end{equation}
+\center {
+\includegraphics[width=.99\textwidth,frame]{analytic}
+}
+
+
+\newpage
+\subsection{Numerical Solution}
+\label{appendix:numerical}
+\input{matlab}
+
+\end{flushleft}
+\end{document}

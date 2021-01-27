@@ -1,0 +1,241 @@
+% !TEX options=--shell-escape
+
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{float}
+
+\newmdtheoremenv{theo}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{Lab Report 1: Tension Test}
+\newcommand{\AssignmentSub}{~}
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{Collected Tension Test Data and Results}
+In this lab, our group collected tensile and hardness data on an Aluminum 5052-H32 dogbone specimen.
+
+% Stress vs strain plot
+For the tensile data collection phase, the specimen was placed within a testing rig that progressively increased the displacement between the specimen grips through means of streching the dogbone until failure. Throughout this process, both the force applied and the displacement from the linear displacement transducer are measured. From the force applied and the measured cross-sectional area we can determine a calculated stress corresponding to each force measurement. Figure~\ref{fig:StressVsStrain} displays the overall displacement data.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{StressVsStrain.png}
+\caption{Stress vs. Strain thoughout the entire tensile test}
+\label{fig:StressVsStrain}
+\end{center}
+\end{figure}
+
+From Figure~\ref{fig:StressVsStrain} we can see that the linear elastic region continues for strain values within the range of 0 to approximately 0.0025. It can also be seen that failure occurs at a stress of $32.68$ksi. Zooming in on the linear elastic region we can determine the Modulus of Elasticity ($E$) as well as the proportional limit. These results can be seen in Figure~\ref{fig:StressVsStrainLinear}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{StressVsStrainLinear.png}
+\caption{Stress vs. Strain thoughout the linear portion tensile test}
+\label{fig:StressVsStrainLinear}
+\end{center}
+\end{figure}
+
+Within the callout we can see that the stress and strain at the proportional limit are $20.7$ksi and $0.00202$, respectively. The calculated value of $E$ from the best fit line is $10,596$ksi. This is approximately equal to reported $E$ value for Aluminum 5052-H32 of $10,200$ksi (MatWeb, 2020). This proportional limit is found at the tail end of the linear data. By definition, the last point within the linear data is the proportional limit, because the stress vs. strain curve becomes non-linear past this point.
+
+% Yield @ 0.2% offset
+
+For calculating percent offset we extend the linear region of the data until it intersects with the real data as well as offseting all strain measurements by a value of 0.0002. This can be seen in Figure~\ref{fig:PercentOffset}
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{PercentOffset.png}
+\caption{0.2\% offset plot}
+\label{fig:PercentOffset}
+\end{center}
+\end{figure}
+
+Within Figure~\ref{fig:PercentOffset} we can see that the intersection between the two lines occurs at a strain of 0.00125. This corresponds to a calculated stress of $13$ksi.
+
+% Percent elongation of gage section
+
+The percent elongation of the gagee section was determines by taking the distance of the pencil marks bothe before and after the tensile test. Before the test the gage pencil marks measured 2.5in apart from each other. After the tensile test the gage pencil marks measured 2.75in apart from eachother. This corresponds to an exact elongation percent of 10\%. This matches the estimate provided in the lab exactly. This calculation can be seen in Equation \ref{eq:PercentElong}/
+
+\begin{equation}
+\frac{L_f - L_i}{L_i}\cdot 100\% = \frac{2.75in - 2.5in}{2.5in}\cdot 100\% = 10\%
+\label{eq:PercentElong}
+\end{equation}
+
+% Percent reduction in area
+
+The percent reduction in area was determined by measureing the thickness and width of the section both before and after the tensile test. Prior to the test the measured width and thickness were $0.504$in and $0.124$in, respectively. After the test the measured width and thickness were $0.446$in and $0.108$in, respectively. These measurements correspond to a $0.0625$in$^2$ before and $0.048$in$^2$ after. The percent reduction in area is $23.2\%$. The area equation can be seen in Equation \ref{eq:Area}. This percent reduction calculation can be seen in Equation \ref{eq:PercentReduction}.
+
+\begin{equation}
+A = w\cdot t = 0.504in \cdot 0.124in = 0.0625in^2
+\label{eq:Area}
+\end{equation}
+
+\begin{equation}
+\frac{A_f - A_i}{A_i}\cdot 100\% = \frac{0.048in^2 - 0.0625in^2}{0.0625in^2}\cdot 100\% = 23.2\%
+\label{eq:PercentReduction}
+\end{equation}
+
+% Ultimate tensile strength
+
+The ultimate tensile strength of the material is $32.68$ksi. This is observed from Figure~\ref{fig:StressVsStrain}.
+
+% Tangent modulus at 1.25% strain
+
+The tangent modulus at 1.25\% strain is calculated by taking the change in stress between the two data points surrounding 1.25\% strain and dividing by the change in strain between those two data points. Observe:
+
+\begin{equation}
+\frac{\sigma_f - \sigma_i}{\epsilon_f - \epsilon_i} = \frac{13543psi - 13236psi}{0.001275 - 0.001247} = 10,652ksi
+\end{equation}
+
+The tangent modulus at 1.25\% strain is determined to be $10,652ksi$.
+
+
+\section{Collected Hardness Data}
+
+\begin{mdframed}
+\begin{center}
+\definition[Strain hardening]{
+    Strain hardening (also called work-hardening or cold-working) is the process of making a metal harder and stronger through plastic deformation.
+}\\
+(NDT Resource Center, 2020)
+\end{center}
+\end{mdframed}
+
+
+\subsection{Pre/Post Tension Hardness}
+Prior to tension testing the dogbone specimen, we determined the hardness of the specimen to be $68.10$HRF. This was determine by collecting hardness data on 3 distinct points on the dogbone's grip. The low amount of varience between measurements suggest that $68.1$HRF is an accurate measure of hardness for the dogbone specimen prior to the dension test. The individual hardness measurements were $68.00$HRF, $68.00$HRF, $68.25$HRF
+
+After conducting the tension test we collected another set of 3 data points for the hardness of the specimen. These data points were collected within the region that necking occured in order to observe any potential strain hardening. We observed the post-tension dogbone to have a hardness of $73.00$HRF. The individual hardness measurements were $72.00$HRF, $73.00$HRF, $74.00$HRF
+
+As a result of the tension test, we observed an overall increase in hardness from $68.1$HRF to $72$HRF. This corresponds to a $5.73\%$ increase in the hardness of the dogbone specimen. From the provided definition of strain hardening, I conclude that this definition does indeed represent our findings within this lab.
+
+\subsection{Comparison to published values}
+% http://asm.matweb.com/search/SpecificMaterial.asp?bassnum=MA5052H32
+% https://alcobrametals.com/aluminum-product-guide/
+% Good sources for published results are MIL-HDBK-5J, CES EduPack, and matweb.com.
+
+% Add more comparisons in a table or something
+According to Aerospace Specification Metals Inc., the hardness of Aluminum 5052-H32 is $66.5$HRF. This means that the measured hardness of our pre-tension specimen is $2.41\%$ higher than the reported hardness value for Aluminum 5052-H32. After our tension test, the strain hardened Aluminum 5052-H32 had a hardness of $73.00$HRF; a hardness $9.77\%$ higher than the reported value.
+
+I found that the measured and reported hardness of Aluminum 5052-H32 is not as high as the reported hardness of Aluminum 6005A-T6. With a Brinell Hardness of 95 (Alcobra, 2020), Aluminum 6005A-T6 has a hardness that is $50.82\%$ higher than Aluminum 5052-H32. In addition to this discrepency in hardness, Aluminum 6005A-T6 has a higher ultimite tensile strength as well as yield strength. These two materials have similar properties, but with the marginally higher density and ultimate strength Aluminum 6005A-T6 lends itself better towards structural applications, such as buildings. On the other hand, Aluminum 5052-H32 is lighter and more ductile, which may make it more performant in aerospace applications where weight constraints are significant.
+
+To provide another example, Aluminum 6061-T6 is another variant alloy for aluminum. It is the densest of the 3 alloys, meaning that it lends itself well for various contruction roles as well as aircraft fittings and bike fmames. It hav comparable strength and hardness values to the previous two aluminum alloys and easily demonstrates how detailed one can be when choosing an alloy to suit their needs.
+
+\section{Visual Inspection of Specimen}
+After the tensile test, we placed the broken specimen underneath an optical microscore and took a photograph of the necked region. This break is obseves in Figure~\ref{fig:TensileBreak}.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=0.8\textwidth]{TensileBreak}
+\caption{Broken specimen at an angle near $45^\circ$}
+\label{fig:TensileBreak}
+\end{center}
+\end{figure}
+
+Note the angle of the break on the specimen here. A break that occurs around 45 degrees is indicative of ductile failure. We know that alumunum is a ductile material, but this break angle provides information that the treatment the Aluminum 5052-H32 did not change its properties significantly enough to no longer be considered ductile.
+
+In Figure~\ref{fig:DimpleVoid} we can see the of specific failure modes at a microscopic level.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{DimpleVoid}
+\caption{Microscopic view of broken specimen}
+\label{fig:DimpleVoid}
+\end{center}
+\end{figure}
+
+From Figure~\ref{fig:DimpleVoid} we can see the presense of a dimple. This dimple is deformation that occurs throughout the material as it deforms and moves towards failure. The presense of dimples are indicators of the ductility of the material, as it deformed, rather than breaking cleanly. The void present indicates ``imperfections'' in the material. More specifically it represents the non-uniformity of the underlying material. Since this is an alloy, there are a variety of elements present within the sample. The voids are indicative of that fact.
+
+Within Figure~\ref{fig:ZoomedDimpleVoid} we can take a closer look at these same features.
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{ZoomedDimpleVoid}
+\caption{Microscopic view of broken specimen}
+\label{fig:ZoomedDimpleVoid}
+\end{center}
+\end{figure}
+
+The same information seen in Figure~\ref{fig:DimpleVoid} can be seen in more detail in Figure~\ref{fig:ZoomedDimpleVoid}. Notice the high number of dimples and voids observable at 1000x zoom.
+
+These images can be compares to other instances of ductile fracture surfaces. Observe Figure~\ref{fig:ExternalSourceDimpleVoid}, an example  of ductile a ductile fracture surface not produced by this lab.
+
+% http://www.materials.unsw.edu.au/tutorials/online-tutorials/3-ductile-fracture-surface
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{ExternalSourceDimpleVoid}
+\caption{A different material's ductile fracture surface. (UNSW School of Materials Science and Engineering, 2016)}
+\label{fig:ExternalSourceDimpleVoid}
+\end{center}
+\end{figure}
+
+It can be seen that the dimples are also present within this image. These dimples are caused by ductile failure, just as this lab's investigated sample's dimples are caused by ductile failure.
+
+Within Figure~\ref{fig:Backscatter} we can see the backscattered electrons visualized in such a manner that we can tell the locations different elements appear throughout the sample.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[width=\textwidth]{Backscatter}
+\caption{A view on the locations of different elements present within the sample}
+\label{fig:Backscatter}
+\end{center}
+\end{figure}
+
+The white particles observed within Figure~\ref{fig:Backscatter} are element with a high atomic number. These are the other elements that are present within this aluminum alloy. Note how the majority of the image is a relatively constant grey color. This shows how the sample is primarily aluminum of some trace amounts of other substances within.
+
+The backscatter detector works by observing electron emmisions from the inner portions of the sample. This is in contrast to secondary electrons that come from the surface of the sample. Backscatter electrons provide information on the composition of the observed sample. Different elements produce different levels of backscatter electrons and as a result decuctions can be made about the presence of different elements within the material.
+
+\section{Specimen Dimensional Data}
+In order to ensure the validity of the test data, it is important to check the diminsions of the dogbone used within the lab and compare it to the specifications provided within the ASTM E8/E8M-16a testing procedures. Figure~\ref{tab:SpecimenDimensions} displays our specimen's measured dimensions in comparison to the recommended specimen dimensions.
+
+\begin{figure}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|}
+\hline
+Type & Lab Specimen & ASTM Recommended & Within Criteria\\
+Grip Width, approximate & 0.757 & 0.75 & TRUE \\
+Grip Thickness & 0.125 & Thickness of Material & TRUE \\
+Grip Length & 1.972 & 2+ & TRUE \\
+Gage Length & 2.5 & 2.25+ & TRUE \\
+Gage Thickness & 0.124 & Thickness of Material & TRUE \\
+Gage Width & 0.504 & $0.5 \pm 0.01$ & TRUE \\
+\hline
+\end{tabular}
+\caption{Specimen dimension comparison to ASTM E8/E8M-16a testing procedure recommendations.}
+\label{tab:SpecimenDimensions}
+\end{center}
+\end{figure}
+
+All of our specimens dimensions are highly similar to the provided dimensions within the ASTM E8/E8M-16a testing procedures. As a result of this investigation, it can be seen that our specimen is within the recommended specimen dimensions for all measured dimensions.
+
+\section{Specimen Preparation Article}
+% http://publish.illinois.edu/concretemicroscopylibrary/specimen-preparation/
+
+Within ``Specimen Preparation for Tensile Testing'' by ESS Tech the importants of specimen preparation is discussed. This article describes detailed key procedure that need to be performed into order to effectively execute a valid tensile test. It provides detailed information for how they prepare a specimen for testing that implaicitly highlights the methodologies and the importance of specimen preparation. This article in conjunction with the NIST article provide a whole picture on why specimen preparation is important.
+
+Within ``Specimen Preparation'' by Paul Stutzman, NIST, there is discussion on proper specimen preparation. Within the article, Stutzman discusses how, ``Improper preparation methods may obscure features, and even create artifacts that may be misinterpreted.'' Additionally, any SEM analysis that uses backscattered electrons needs a surface to be highly polished. If this is not the case, the SEM will be unable to have ``optimim imaging.'' He then continues on to discuss that irregularities within the surfaace of a specimen can make ``quantitative estimates arduous, as the surfac eis no longer planar.''
+
+All reasons listed above are legitimate risks of failign to properly prepare a specimen prior to testing. A small irregularlity or lack of polish present on a specimen will be largely magnified when investigated underneath the eyes of a scanning electron microscope.
+
+\newpage
+\section{References}
+1. Traugott, Fischer. Materials Science for Engineering Students. \\
+2. ASM MatWeb.com. Aluminum 5052-H32. \\ Retrieved from: http://asm.matweb.com/search/SpecificMaterial.asp?bassnum=MA5052H32 \\
+3. UNSW School of Materials Science and Engineering. Ductile Fracture Surfave. Retrieved from: http://www.materials.unsw.edu.au/tutorials/online-tutorials/3-ductile-fracture-surface \\
+4. Alcroba. Aluminum Product Guide. Retrieved from: https://alcobrametals.com/aluminum-product-guide/ \\
+5. ESS Tech. Specimen Preparation for Tensile Testing. Retrieved from: https://catalog.esstechinc.com/Asset/Specimen\%20Preparation\%20for\%20Tensile\%20Testing\%20v.9.12.11.pdf
+6. NDT Resouce Center. Strengthening/Hardening Mechanisms. Retrieved from:\\ https://www.nde-ed.org/EducationResources/CommunityCollege/Materials/Structure/strengthening.htm
+
+\end{document}

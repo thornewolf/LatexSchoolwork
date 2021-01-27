@@ -1,0 +1,42 @@
+\begin{definition}
+b \emph{divides} a, denoted $a | b$, if $\exists n \in \mathbb{Z}$ such that $a = bn$.
+\end{definition}
+
+\subsection{Prove that R is an \textit{equivalence} relation on $\mathbb{Z}$. Make sure you use the formal definition of \textit{divides}.}
+
+Define a relation on $\mathbb{Z}$ by $R = \{(a, b) | 4 ~\rm{divides}~ b - a\}$.
+
+A relationship $R$ is an equivalence relation if $R$ is reflexive, symmetric, and transitive. Therefore, we can demonstrate that this relationship $R$ is an equivalence relation by determining that $R$ has all three of these properties.
+
+We can demonstrate that $R$ is a reflexive relationship by checking if $\forall a \in \mathbb{Z} ~~ (a,a) \in R$. To show this, we need to show that 4 divides $b - a$ where $a = a, b = b$. This means that for $(a,a) \in R$, 4 needs to divide $(a-a)$. This is the same as asking if 4 divides 0, since $a-a = 0$. We know that any non-zero integer divides 0 by the definition of divides because $0n = 0$ for any arbitrary $n$. This means, we know that $(a,a)$ must be in $R$. Therefore, $R$ is reflexive.
+
+We can demonstrate that $R$ is a transitive relationship by demonstrating that $(a,b) \in R ~\rm{and}~ (b,c) \in R \rightarrow (a,c) \in R$. By knowing that $(a,b) \in R ~\rm{and}~ (b,c) \in R$ we know that $b-a = 4n_1$ where $n_1$ is some integer and we know $c-b = 4n_2$ where $n_2$ is some integer. We can algebraically show that $c-a = 4n_3$ where $n_3$ is some integer. Observe:
+
+\begin{center}
+    $c-a = (c-b) + (b-a)$ \\
+    $c-a = 4n_2 + 4n_1$ \\
+    $c-a = 4(n_1 + n_2)$ \\
+    $c-a = 4n_3 \star$
+\end{center}
+
+The step denoted by a $\star$ relies on the fact that the sum of any two arbitrary integers is another arbitrary integer. By the definition of divides, $4 | 4n_3$. This proves directly that the relationship $R$ is transative.
+
+We can demonstrate that $R$ is symmetric by showing that $(a,b) \in R \rightarrow (b,a) \in R)$. Let $a$ and $b$ be integers and suppose $(a,b)$ is in $R$. We also know that 4 divides $b - a$. If 4 divides $b - a$ and gives us an integer n, then 4 divided by $a - b$ would simply result in -n. Observe:
+
+\begin{center}
+   $\frac{b-a}{4} = n \Longleftrightarrow$ \\
+   $\frac{a-b}{4} = \frac{-(b-a)}{4} = -n $  \\
+\end{center}
+Since we know that 4 divides $b - a$, the above work shows that 4 divides $a - b$. The statement $4 | a - b$ is equivalent to stating $(b,a) \in R$. That is, $4 | b-a \equiv 4 | a-b \rightarrow (a,b) \in R$ and $(b,a) \in R$. Therefore, we can say what the relation $R$ is symmetric on $\mathbb{Z}$.
+
+We have demonstrated that $R$ is reflexive, summetric, and transitive on $\mathbb{Z}$. Therefore, $R$ is an equivalence relation on $\mathbb{Z}$.
+
+\subsection{Describe each of the four equivalence classes $[0]_4, [1]_4, [2]_4, [3]_4$ in a different way.}
+
+The $[0]_4$ class is representative of all integers that have a remainder of 0 when divided by 4.
+
+The $[1]_4$ contains all balls you could have if you had, say, exactly 1 ball right now but the store only sells them in packs of 4.
+
+An example of an element of $[2]_4$  would be if you had a total of ten cups of coffee, and you had to divide it equally between four college students. You would have a remainder of two extra cups of coffee. This can be represented as $[2]_4$.
+
+1 less than 4 is equivalent to 3 modulus 4. This is interesting because the $[-1]_4$ bucket is the same as the $[3]_4$ bucket. Since these reference exactly the same thing, we could use both the $[-1]_4$ bucket and the $[3]_4$ bucket interchangably in modular mathematics.

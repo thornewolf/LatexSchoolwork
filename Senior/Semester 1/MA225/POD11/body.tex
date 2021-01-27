@@ -1,0 +1,97 @@
+\subsection{Let $A, B, C$ be sets, and let $f : A \rightarrow B$ and $g : B \rightarrow C$ be functions. If $g \circ f : A \rightarrow C$ is injective, what can you say about injectivity of f and/or g? Prove your answer.}
+
+We can determine information on the injectivity if $f, g$ by exhaustively covering all implications when none, one, or both functions are injective. This list can be seen in Figure \ref{tab:injective}.
+
+\begin{figure}[H]
+  \begin{center}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      $f$ is injective & $g$ is injective & $g \circ f$ is injective \\
+      \hline
+      False & False & Unknown \\
+      False & True & Unknown \\
+      True & False & Unknown \\
+      True & True & Unknown \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Table representing the exhaustive list of the injectivity of both $f$~and~$g$.}
+  \label{tab:injective}
+\end{figure}
+
+The first key fact is that both $f$ and $g$ are functions. This means all outputs are singular given any arbitrary input. There is no input that produces multiple outputs. Using this we can determine the $g \circ f$ injectivity for each element within out list.
+
+Suppose neither $f$ nor $g$ are injective. This means
+\begin{center}
+  $\exists x,y \in A ~ (x \neq y) \land (f(x) = f(y))$ \\
+  $\exists x,y \in B ~ (x \neq y) \land (g(x) = g(y))$ \\
+\end{center}
+
+From this information we can say that $g \circ f$ is most definitely not injective. This is because of the lack of injectivity of $f$.Since we know with certainty that $\exists x,y \in A ~ (x \neq y) \land (f(x) = f(y))$, the composition of $f$ and $g$ implies
+
+\begin{center}
+  $\exists x,y \in A ~ (x \neq y) \land (g(f(x)) = g(f(y)))$ \\
+\end{center}
+
+Two inputs that would ``be passed to" $f$ will be interpreted by $g$ as the same input, and since $g$ is a function it must therefore return the same output for the same input. Knowing that $f$ is not injective assures us that $g \circ f$ is not injective.
+
+Now suppose $f$ is not injective but $g$ is injective. This means
+\begin{center}
+  $\exists x,y \in A ~ (x \neq y) \land (f(x) = f(y))$ \\
+  $\forall x,y \in B ~ g(x) = g(y) \rightarrow x = y$ \\
+\end{center}
+
+Consult the previous argument to see why $g \circ f$ must not be injective. The injectivity of $g$ is irrelevant to the injectivity of $g \circ f$ because the divinitive lack of injectivity in $f$ means that $g \circ f$ is not injective.
+
+Thirdly, suppose f is injective and g is not injective. This means
+\begin{center}
+  $\forall x,y \in A ~ f(x) = f(y) \rightarrow x = y$ \\
+  $\exists x,y \in B ~ (x \neq y) \land (g(x) = g(y))$ \\
+\end{center}
+
+From this information we can say that it is possible that $g \circ f$ is injective, but no guarantees can be made. While there may exest some elements $x,y \in B$ that produce the same output, we do not have a guarantee that both $x,y$ exist within the range of $f$. Therefore we can make no statement about the injectivity of $g \circ f$
+
+Lastly, suppose both $f$ and $g$ are injective. This means
+\begin{center}
+  $\forall x,y \in A ~ f(x) = f(y) \rightarrow x = y \iff \forall x,y \in A ~ x \neq y \rightarrow f(x) \neq f(y)$ \\
+  $\forall x,y \in B ~ g(x) = g(y) \rightarrow x = y \iff \forall x,y \in B ~ x \neq y \rightarrow g(x) \neq g(y)$ \\
+\end{center}
+
+Notice the contrapositives of each of the initial statements. We know for certain that for any nonequal $x,y$ pair we will produce different outputs from $f$. This means that another distinct $x,y$ pair will have been generated as the ``input" to $g$. Since $g$ also has the injectivity guarantee, we know that two distinct outputs must be generated. This is the definition of injectivity and we therefore know that $g \circ f$ is injective.
+
+We can now reconstruct our previous table.
+\begin{figure}[H]
+  \begin{center}
+    \begin{tabular}{|c|c|c|}
+      \hline
+      $f$ is injective & $g$ is injective & $g \circ f$ is injective \\
+      \hline
+      False & False & False \\
+      False & True & False \\
+      True & False & Either True or False \\
+      True & True & True \\
+      \hline
+    \end{tabular}
+  \end{center}
+  \caption{Table representing the exhaustive list of the injectivity of both $f$~and~$g$.}
+  \label{tab:injectiveFilled}
+\end{figure}
+
+Now to make a claim about what we can say about the injectivity of both $f$ and $g$ if we know that $g \circ f$ is injective. In any possible outcome where $g \circ f$ is injective (rows 3 and 4) we can see that $f$ must be injective. But it is possible for $g$ to either be, or not be injective. That is
+\begin{center}
+  $g \circ f$ is injective $\rightarrow f$ is injective
+\end{center}
+
+And that is all we can possibly say. Q.E.D
+
+\newpage
+\subsection{If $E^+$ is the set of positive even integers and $O^+$ is the set of positive odd integers, then there
+is a one-to-one correspondence between $E^+$ and the set $S := \{n^2 |n \in O^+\}$.}
+
+\begin{definition}
+  Function F is one-to-one (injective) if and only if $F(a_1) = F(a_2)$ for all $a_1,a_2 \in A$
+\end{definition}
+
+If we correlate this definition to the problem at hand we could come toa  conclusion thaat there is a one-to-one correspondence between $E^+$ and $O^+$. Since $E^+$ is a set of all positive even numbers, and $O+$ is a set of all odd posotive integers. The graph of this would simply be $F(e \in E^+) = F(o \in O^+)$ which would be $e \in E^+ = o \in O^+$. Therefore $E^+$ and $O^+$ are one-to-one by the definition of one-to-one.
+
+Since we have already proved that all odd positive integers are one-to-one with $E^+$, $\{ n^2 | n \in O^+\}$ would also be one-to-one with $E^+$, because multiplying an odd positive integer by itself will always result in a positive odd integer. This is by the definition of squaring any odd integer. So, in conlcusion there is a one-to-one correspondence between $E^+$ and the set $\{ n^2 | n \in O^+\}$.

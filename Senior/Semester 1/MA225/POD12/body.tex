@@ -1,0 +1,60 @@
+\begin{definition}
+The $limit$ of a sequence $(a_n)$ as $n \rightarrow \infty$ exists and equals $L$ (denoted $\lim\limits_{n \rightarrow \infty} = L$) if and only if for any small number $\epsilon > 0$, there exists $N \in \mathbb{N}$ such that $|a_n - L| < \epsilon$ for all $n \geq N$.
+\end{definition}
+Define a sequence $a_n := 2(\frac{1}{3})^{n-1}$ for each $n \in \mathbb{Z}^+$
+
+\subsection{What is the limit of $a_n$ as $n \rightarrow \infty$? Prove your answer using the definition above.}
+We can demonstrate that the limit for the sequence $a_n$ is $0$ by demonstrating that there is some $N$ such that any $n \geq N$ the inequality $|a_n - L| < \epsilon$ for any arbitrary positive $\epsilon$. We will manipulate this inequality to see what value of $N$ could produce a valid result.
+
+\begin{center}
+  \begin{tabular}{ccc}
+    $|a_n - L| < \epsilon$ & $\iff$ \\
+    $\ln(a_n - 0) < \ln(\epsilon)$ & $\iff$ & $[1]$ \\
+    $\ln(2(\frac{1}{3})^{n-1}) < \ln(\epsilon)$ & $\iff$ \\
+    $\ln(2) + (n-1)\ln(\frac{1}{3}) < \ln(\epsilon)$ & $\iff$ \\
+    $n - 1 > \frac{\ln(\epsilon) - \ln(2)}{\ln(\frac{1}{3})}$ & $\iff$ & $[2]$ \\
+    $n > 1 + \ln(\epsilon/2) \cdot \ln(1/3)^{-1}$
+
+  \end{tabular} \\
+  \begin{tabular}{l}
+  $[1]$ $\epsilon$ and an abolute value are both positive so this is valid. \\
+  $[2]$ The direction of the inequality flips because we divide by a negative number ($ln(1/3)$).
+  \end{tabular}
+\end{center}
+
+We can see that the above equation is satisfiable, as any arbitrarily defined $\epsilon$ will produce a value for $n$ to exceed. In order for this to be complete we need to know that $a_n$ is strictly decreasing as well. This can be seen because for any arbitrary value $n > 0$, $2(\frac{1}{3})^{n-1} > 2(\frac{1}{3})^{n+1-1}$. Therefore the limit exists and is 0.
+
+\subsection{Let $S_k := \sum\limits_{n=1}^{k} a_n$ be the sum of the first $k$ terms in the sequence.}
+\subsubsection{Compute $S_1, S_2, S_3, S_4, S_5$.}
+\begin{center}
+\begin{tabular}{l}
+  $S_1 = \sum_{n=1}^1 = 2(\frac{1}{3})^{n-1} = 2(\frac{1}{3})^{1-1} = 2$ \\
+  $S_2 = \sum_{n=1}^2 = 2(\frac{1}{3})^{n-1} = 2 + \frac{2}{3} = \frac{8}{3}$ \\
+  $S_3 = \sum_{n=1}^3 = 2(\frac{1}{3})^{n-1} = \frac{8}{3} + \frac{2}{9} = \frac{26}{9}$ \\
+  $S_4 = \sum_{n=1}^3 = 2(\frac{1}{3})^{n-1} = \frac{26}{9} + \frac{2}{27} = \frac{80}{27}$ \\
+  $S_5 = \sum_{n=1}^3 = 2(\frac{1}{3})^{n-1} = \frac{80}{27} + \frac{2}{81} = \frac{242}{81}$ \\
+\end{tabular}
+\end{center}
+
+\subsubsection{Does the sequence $S_k$ converge or diverge as $k \rightarrow \infty$?}
+As $k \rightarrow \infty$, sequence $S_k$ converges. We know from part (a) that limit of $a_n$ (L) is 0. We know that the summation of a series that converges to 0 will also converge to some value. This value does not have to be 0 though.
+
+\subsection{Let $S := \sum\limits_{n=1}^{\infty} a_n$. Find $S - \frac{1}{3}S$. Call this expression ($\star$)}
+$S$ here is equivalent to $\lim\limits_{k \rightarrow \infty} \sum\limits_{n=1}^k 2(\frac{1}{3})^{n-1}$. This summation converges to 3. Therefore $S$ is equal to 3.
+
+Alternatively, symbolically this is
+\begin{center}
+  \begin{tabular}{cc}
+    $\sum\limits_{n=1}^\infty 2(\frac{1}{3})^{n-1} - \frac{1}{3}\sum\limits_{n=1}^\infty 2(\frac{1}{3})^{n-1}$ & $\iff$ \\
+    $\sum\limits_{n=1}^\infty 2(\frac{1}{3})^{n-1} - \frac{2}{3}(\frac{1}{3})^{n-1}$ & $\iff$ \\
+    $\sum\limits_{n=1}^\infty \frac{4}{3}(\frac{1}{3})^{n-1}$ & $\iff$ \\
+    $\frac{4}{3} \sum\limits_{n=1}^\infty (\frac{1}{3})^{n-1}$ & $\iff$ \\
+  \end{tabular}
+\end{center}
+
+This means $S - \frac{1}{3}S = 2 = (\star)$ = $\frac{4}{3} \sum\limits_{n=1}^\infty (\frac{1}{3})^{n-1}$.
+
+\subsection{Solve the equation $S - \frac{1}{3}S = (\star)$ for $S$. Explain what this solution tells you.}
+Solving this equation algebraically produces $S = \frac{(\star)}{2 / 3} = 2\sum\limits_{n=1}^\infty (\frac{1}{3})^{n-1} = 3$.
+
+This relationship is demonstrating how $\sum\limits_{n=1}^\infty ar^{n-1} - r\sum\limits_{n=1}^\infty ar^{n-1} = 1$. This means that in general $S = \frac{a}{1-r}$. In this problem we have $a=2, r = \frac{1}{3}$ so $S = 3$.

@@ -1,0 +1,12 @@
+\subsection{If the books are indistinguishable copies of the same title.}
+This question is asking for the solution to ``indistinguishable items into distinguishable boxes''. This equivalent to asking for n objects from a set of k options where repetition is allowed. e.g. 3 multichoose 10. We represent that as ${n+k-1}\choose{n}$=${12}\choose{10}$=$66$. Therefore there are 66 ways to select indistinguishable copies of the same title and place them into the 3 shelves.
+
+\subsection{If no two books are the same and order on shelf matters.}
+We can first consider how many ways there are to place $n$ indistinguishable items into $k$ distinguishable buckets. This problem is solved above using the multichoose technique. There are 3 shelves to place books into and 10 books to place into said shelves. Therefore there are ${n+k-1}\choose{n}$=${12}\choose{10}$=$66$ ways to separate a given ordering of books into the 3 shelves.
+
+We then consider the ordering of these items. Since the above work holds the assumption that there is some single ordering attributed to how the items are placed into the buckets, there are ${n+k-1}\choose{n}=66$ ways for a single ordering. The number of ways to order a set of n distinguishable items is $n!$. Since the ordering of the books can occur before they are placed one by one into the shelves we can use the product rule to combine the two. Therefore, there are ${n+k-1}\choose{n}$$\cdot n!$ ways to place n distinguishable items into k distinguishable shelves. (when order matters.)
+
+Plugging in all relevant values, $n=10, k=3$ there are $66\cdot 10!$ ways to place 10 distinguishable books onto 3 distinguishable shelves when order matters.
+
+\subsection{Generalize n and k}
+Using the methodology described above it was determined that there are ${n+k-1}\choose{n}$$\cdot n!$ ways to place n indistinguishable items into k distinguishable shelves. (when order matters.) Therefore the answer to this question is $C(n+k-1,n)\cdot n!$.

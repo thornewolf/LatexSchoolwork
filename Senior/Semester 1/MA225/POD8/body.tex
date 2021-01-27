@@ -1,0 +1,61 @@
+\begin{raggedright}
+Demonstrate that the following three statements are equivalent, where a and b are positive real numbers. i.e. $a,b > 0$ and $a,b \in \mathbb{R}$.
+\end{raggedright}
+\begin{center}
+a is less than b \\
+the average of a and b is greater than a \\
+$\frac{b}{a} > 1$ \\
+\end{center}
+
+In order to prove that these three statements are equivalent, we will perform 2 distinct proofs and use the results from said proofs to establish biconditional dependence. Firstly, we will represent these three statements as three distinct propositions.
+
+\begin{center}
+\begin{tabular}{ccl}
+  P & := & a is less than b \\
+  Q & := & the average of a and b is greater than a \\
+  R & := & $\frac{b}{a} > 1$ \\
+\end{tabular}
+\end{center}
+
+The first proof will demonstrate that $P \iff Q$ is true, and the second proof will demonstrate $P \iff R$ is true.
+
+\subsection{Demonstrate $P \iff Q$}
+We will construct a direct proof by continually generating equivalent statements to convert $P$ to $Q$.
+
+Let a and b be positive real numbers and suppose that a is less than b. Representing this in the form of an inequality we have $a < b$. Observe the following algebraic manipulations:
+
+\begin{center}
+  \begin{tabular}{cl}
+    & $a < b$ \\
+    $ \iff $ & $ a + a < b + a$ \\
+    $ \iff $ & $ 2a < b + a$ \\
+    $ \iff $ & $ a < \frac{b + a}{2}$ \\
+    $ \iff $ & $ \frac{a + b}{2} > a$
+  \end{tabular}
+\end{center}
+
+Each line provided is a symbolic manipulation that is equivalent to the line preceeding it. The above steps demonstrate that $a < b \equiv \frac{a + b}{2} > a$.
+
+Note that $\frac{a + b}{2} > a$ is the matematical representation of "the average of a and b is greater than a." The above equivalency is precisely indicating that $P \iff Q$.
+
+\subsection{Demonstrate $P \iff R$}
+Let a and b be positive real numbers that a is less than b. We will construct a direct proof by generating a list of equivalent statements that demonstrate an equivalency between $P$ and $R$.
+
+Representing this inequality mathematically we have $a < b$. Observe the following algebraic manipulation.
+
+\begin{center}
+  \begin{tabular}{cll}
+    & $a < b$ \\
+    $\iff$ & $1 < \frac{b}{a}$ & *
+  \end{tabular}
+\end{center}
+
+Note that the operation on the step denoted with a * is only valid because we have established that both a and b are positive real numbers. This operation would not be valid if a were non-positive. We would either need to flip the inequality or consider that this operation is undefined for $a=0$.
+
+The above trivially indicated that the inequality $a < b$ and be directly translated into the inequality $1 < \frac{b}{a}$. The latter inequality is $R$ exactly. Thus, we have demonstrated that $P \iff R$.
+
+\subsection{Integrating previous proofs}
+In the above text we have demonstrated both $P \iff Q$ and $P \iff R$. By the transitive biconditional theorem we can then use these results to conclude $Q \iff R$. We have now demonstrated the equivalency between all propositions $P,Q,R$.
+
+Q.E.D
+

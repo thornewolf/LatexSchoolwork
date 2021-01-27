@@ -1,0 +1,64 @@
+% !TEX options=--shell-escape
+
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+
+\newmdtheoremenv{theo}{Theorem}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{POD 2}
+\newcommand{\AssignmentSub}{Complete Graph}
+\newcommand{\HP}{Hamilton Circuit }
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{Problem Of Day 2}
+
+\input{body.tex}
+
+% \begin{table}[ht]
+% \begin{center}
+% \begin{tabular}{l|l}
+% Room & Vertex Value \\
+% \hline
+% Garage & 4 \\
+% Yard & 4 \\
+% Dining Room & 4 \\
+% Kitchen & 4 \\
+% Piano Room & 4 \\
+% Hall & 4 \\
+% Family Room & 4 \\
+% Living Room & 4 \\
+% Master Bedroom & 4 \\
+% Conservatory & 40 \\
+% Study & 41 \\
+% \end{tabular}
+% \end{center}
+% \caption{Mapping of Room Name to Vertex Value}
+% \label{tab:RoomMapping}
+% \end{table}
+
+
+% % https://bit.ly/3lr09eC
+% \begin{figure}[ht]
+% \centering
+%     \includegraphics[width=0.8\linewidth]{BabyEulerGraph1}
+%     \caption{An Undirected Multigraph Representing Baby Euler's House}
+%     \label{fig:EulerHouse1}
+% \end{figure}
+
+
+
+\end{document}

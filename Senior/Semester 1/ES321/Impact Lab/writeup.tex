@@ -1,0 +1,179 @@
+% !TEX options=--shell-escape
+
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{float}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{Lab 4}
+\newcommand{\AssignmentSub}{Charpy Impact Test}
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{Impact energy versus temperature graph}
+In Figure \ref{fig:mainGraph} the cumulative data from past semesters' Charpy Impact Test is plotted.
+
+\begin{figure}[H]
+\includegraphics[width=\linewidth]{ImpactEnergyVsTemperature}
+\caption{Plot for impact energy vs. temperature for all three materials used in this lab.}
+\label{fig:mainGraph}
+\end{figure}
+
+Notice how there is significant variability for same-temperature readings in both aluminum and steel within Figure \ref{fig:mainGraph}. This variance could suggest variability between the specimens used but also could suggest variablity between conducted tests. For all aluminum data points at temperatures exceeding $600^\circ F$, the specimen failed to fully fracture. This failure to fully fracture can succest that high temperature aluminum has the capability to store significantly more ductile energy than it's lower-temperature counterparts.
+
+
+\section{Fracture surfaces within the brittle to ductile transition}
+% On another page, provide digital photos of an appropriate range of fracture surfaces (SEM) with proper labels and captions.  The range of photos should be appropriate to proving (or disproving) each potential transition, as indicated by the Charpy impact energy plot.
+
+In my analysis, I noticed a general increase in the apparence of ductile fracture at higher temperatures throughout all materials.
+
+\subsection{Aluminum fractures}
+
+Figure \ref{fig:AlCold} displays the fracture surface for a liquid nitrogen-chilled specimen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Photos/Selected/AlColdNotated}
+\caption{Liquid Nitrogen-cooled fractured aluminum sample}
+\label{fig:AlCold}
+\end{figure}
+
+Notice the labeled dimples throughout Figure \ref{fig:AlCold}. These dimples are indicative of ductile failure at very low temperatures. While the Charpy Impact energy is indeed lower at $-320^\circ F$ than at higher temperatures, it appears that aluminum has maintained its ductility at this temperature.
+
+Figure \ref{fig:AlRoomTemp} displays the fracture surface for a room temperature specimen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Photos/Selected/AlRoomTemp}
+\caption{Room temperature fractured aluminum sample}
+\label{fig:AlRoomTemp}
+\end{figure}
+
+In Figure \ref{fig:AlRoomTemp} it can be seen that the fracture surface is highly similar to the fracture surface observed in the chilled sample. The aluminum has failed in a ductile manner at this temperature.
+
+Figure \ref{fig:AlHotFrac} displays the fracture surface for a heated specimen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Photos/Selected/Al575Notated}
+\caption{$575^\circ F$ fractured aluminum sample}
+\label{fig:AlHotFrac}
+\end{figure}
+
+In Figure \ref{fig:AlHotFrac} it can be seen that the aluminum failure remains ductile at this temperature as well.
+
+\subsubsection*{Conclusions on aluminum}
+From this qualitative analysis, it is evident that aluminum does not experience a ductile to brittle transition when cooled. The aluminum maintains highly ductile properties at all investigated temperatures. From Figure \ref{fig:mainGraph} we can see that there is a strength increase in aluminum within the range of $500^\circ - 750^\circ F$. This ``disproves'' the notion that aluminum experiences a ductile to brittle transition.
+
+\subsection{Steel Fractures}
+Figure \ref{fig:SteelCold} displays the fracture surface for a liquid nitrogen-chilled specimen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Photos/Selected/SteelColdNotated}
+\caption{Liquid Nitrogen-cooled fractured steel sample}
+\label{fig:SteelCold}
+\end{figure}
+
+In Figure \ref{fig:SteelCold} we can see evidence for brittle intergranular fracture in the steel. No ductile dimpling is observed, but rather a sharp set of edges characterizing a rough fracture surface. This qualitative observation is supported by the data in Figure \ref{fig:mainGraph}, as steel has the lowest Charpy Impact Energy of the group.
+
+Figure \ref{fig:SteelRoomTemp} displays the fracture surface for a room temperature specimen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Photos/Selected/SteelRoomTemp}
+\caption{Room temperature fractured steel sample}
+\label{fig:SteelRoomTemp}
+\end{figure}
+
+At room temperature, steel has noticable levels of dimples throughout the scanned area. Notice how the fracture surface of the steel sample in Figure \ref{fig:SteelRoomTemp} is similar in structure to the fracture surface of the aluminum. The Charpy Impact Energy of the steel at room temperature is approximately 35x higher than at $-320^\circ F$. This suggests that steel experiences a brittle to ductile transition as temperature is increased.
+
+Figure \ref{fig:Steel800} displays the fracture surface for a heated specimen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Photos/Selected/Steel800Notated}
+\caption{$800^\circ F$ fractured steel sample}
+\label{fig:Steel800}
+\end{figure}
+
+In Figure \ref{fig:Steel800} we see steel with similar levels of dimples as room temperature steel. This similarity suggests similar levels of ductility for steel at these two temperatures but does not necessarily guarantee so.
+
+\subsubsection*{Conclusions on steel}
+
+Overall, steel seems to experience a brittle to ductile transition when transitioning between $-320^\circ F$ and room temperature. There is some evidence that steel experiences a more gradual ductile to brittle transition as temperature is further increased past room temperature. This transition may be caused by granular structure changes within the steel or may simply be the notion that strength will gradually fall off as ductility increases to the point where a material will provide effectively no resistance to strain.
+
+“Analysis of Ductile to Brittle Transition of Mild Steel” (Sutar, 2014) suggests that steel has a ductile-to-brittle transition temperature (DBTT) somewhere between $-40^\circ F$ and $-39^\circ F$. This temperature is inline with the experimental results found within this lab.
+
+\subsection{Brass Fractures}
+
+Figure \ref{fig:BrassRoomTemp} displays the fracture surface for a room temperature specimen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Photos/Selected/BrassRoomTemp}
+\caption{Room temperature fractured brass sample}
+\label{fig:BrassRoomTemp}
+\end{figure}
+
+Notice the magnification within Figure \ref{fig:BrassRoomTemp}. The within this zoom level we see a series of small grains experiencing ductile fracture at room temperature. The Charpy Impact Energy of brass at room temperature is close to the impact energy at $-320^\circ F$. This fact suggests that brass has similar ductility levels between these temperature ranges.
+
+Figure \ref{fig:Brass800} displays the fracture surface for a heated specimen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{Photos/Selected/Brass800}
+\caption{$800^\circ F$ fractured brass sample}
+\label{fig:Brass800}
+\end{figure}
+
+Notice the magnification in Figure \ref{fig:Brass800}. Despite only having a magnification level of 600, the observed grain size is significantly larger than in the 900x magnification seen in Figure \ref{fig:BrassRoomTemp}. This observation is supported by “Mechanical Properties of Copper and Copper Alloys at Low Temperatures.” (Copper Development Association Inc., 2020) as it states, ``Metallographic examination revealed that the specimens with high impact strengths (113 to 115 ft-lb) had small grains while those with low impact strength (57 to 84 ft-lb) had large grains.'' That is, the reduction in imact strength observed in brass in a transition from moderate to high temperatures is consistent with the observed increase in the grain size of brass.
+
+\subsubsection*{Conclusions on brass}
+
+Overall, brass is observed to maintain its ductility within the observed temperature range, exhibiting behavior similar to aluminum. A distinct factor within brass is the signficicant changes in grain size, that adversely affects the Charpy Impact Energy associated with brass, as temperature increases.
+
+% Discuss the appearance of the fracture surfaces and how this relates to the Charpy Impact data.  Make sure to read your textbook on fracture surfaces.  Again, you are to present and discuss an appropriate range of fracture surfaces from our lab experiment to help explain all possible transitions.  Make sure you indicate the predominate mode of fracture for all images shown.
+
+\section{Does each material have a ductile-to-brittle transition?}
+% Now provide a full discussion on whether or not each material has a ductile-to-brittle transition(s), as evidenced by all of your data, and if so, estimate the temperature range in which this occurs.
+In summary of previous discussion, not all materials have ductile to brittle transitions. Aluminum and brass remained ductile at all temperatures. Steel's ductility increased as temperature was increased. Steel experienced a decrease in ductility (and therefore strength) at lower temperatures.
+
+% Find published sources on whether or not steels, aluminums, and brasses typically have ductile-to-brittle transitions, and use this information in your discussions.  Realize that not all transitions may be the typical ductile-to-brittle transition that was discussed in class
+
+“Mechanical Properties of Copper and Copper Alloys at Low Temperatures” states ``Copper alloys become stronger and more ductile as temperature goes down.'' As brass is a copper alloy we can see thet there is, in general, a ductile brittle transition as temperature increases for brass. This is opposite to the behavior of steel, which experiences a brittle to ductile transition around $-40^\circ F$. (Sutar, 2014) Aluminum is also unique within the studied set of materials as there is no clear brittle-ductile-transition.
+
+\subsection{Ductile-to-brittle transistion dependence on atomistic crystalline arrangement}
+% Research the dependence of ductile-to-brittle transition on atomistic crystalline arrangement, and discuss how this may relate to your results.
+
+There is a high correlation between the behavior of the ductile-to-brittle transition for different materials when stratified by atomistic crystalline arrangement.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\linewidth]{general_behavior}
+\caption{General behavior of various crystalline structures as temperature varies. (Jordan, 2020)}
+\label{fig:generalBehavior}
+\end{figure}
+
+As exhibited in Figure \ref{fig:generalBehavior} we can see that materials with a BCC structure experience a brittle-to-ductile transition as temperature increases while FCC and HCP structures will often maintain a high level of ductility accross temperature ranges. Aluminum and copper both have FCC structures and the data presented within this lab supports the reported behavior in Figure \ref{fig:generalBehavior}.
+
+% Discuss two additional types of impact tests that can be used on metallic materials (provide citations whenever necessary!).
+One example of an additional type of impact test is the drop-weight test. This test is commonly referred to as the Pellini test. It is ``a simple method to determine the nil-ductility transition temperature (NDTT)'' (TWI Ltd, 2020) This test uses fracture propagation within the tested specimen to make statements about its ductility.
+
+The IZOD impact strength test ``is an ASTM standard method of determining the impact resistance of materials.'' (Wikipedia, 2020) This test consistes of using a pivot arm to swing a weight from a fixed height. This test is highly similar to other impact tests in the sense that it is fundamentally ``slamming'' a small incisor into the specimen and measuring the energy absorbed.
+
+
+\end{document}

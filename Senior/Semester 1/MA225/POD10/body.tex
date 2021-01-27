@@ -1,0 +1,83 @@
+Let S, T, R be sets.
+
+\subsection{Prove that $(S - T) \cap (T - R) = \emptyset$}
+
+We will perform a direct proof using set builder notation. Consider some set
+S, T, R in some assumed larger universe U. Observe the following definitions for
+(S - T) and (T - R) from the definition of the relative compiment of a set.
+
+\begin{center}
+\begin{tabular}{ll}
+    $A = (S - T) = {x : (x \in S) \land (x \notin T)}$ & By the definition of relative compliment. \\
+    $B = (T - R) = {x : (x \in T) \land (x \notin R)}$ & By the definition of relative compliment. \\
+\end{tabular}
+\end{center}
+
+We have labeled these sets as A, B for notational convenience. By the definition
+of set intersection the following relationship holds true.
+
+\begin{center}
+    $ A \cap B = {x : (x \in A) \land (x \in B)} $
+\end{center}
+
+By substituting in (S - T) and (T - R) in the place of A and B we can see the
+following is true.
+
+\begin{center}
+    $(S - T) \cap (T - R) = {x : (x \in S) \land (x /\notin T) \land (x \in T) \land (x \notin R)} $
+\end{center}
+
+It can be trivially seen that $(x \notin T) \land (x \notin T)$ is a contradiction. There exists
+no element x that is both within some set T and not within that very same set
+T. Due to the existence of this contradiction we can see that the resultant set
+must be equivlant to the empty set.
+
+That is, $(S - T) \land (T - R) = \emptyset$. Q.E.D
+
+\subsection{Given a set A in a larger universe U, let $\bar{A} = {x \in U : x \notin A}$. Suppose
+S, T, R belong to some common universe U}
+
+\newpage
+\subsubsection{Draw the Venn diagram for the set}
+\begin{figure}[ht]
+\includegraphics[width=\linewidth]{venn.png}
+\caption{Venn diagram describing this set}
+\end{figure}
+
+\newcommand{\thecaps}{\bar{S} \cap \bar{T} \cap \bar{R}}
+\newcommand{\thecups}{\overline{S \cup T \cup R}}
+\subsubsection{Prove that $ \thecaps = \thecups$}
+
+We can prove this statement true by directly manupulating $x \in \thecups$ and demonstrating through a series of equivalency statements that this is equivalent to $x \in \thecaps$. We will assume that some arbitrary
+element $x$ exists such that $x \in \thecups$. Observe:
+
+\begin{center}
+\begin{tabular}{ll}
+    $x \in \thecups$ & $\iff$ \\
+    $x \notin S \cup T \cup R$ & $\iff$ \\
+    $x \notin S \land x \notin R \land x \notin T$ & $\star$ \\
+\end{tabular}
+\end{center}
+
+The final step within these operations is crucial. This step is utilizing DeMorgan’s laws on sets to state that if some element is not within the union of a collection of sets, that element must not be in any of the constituent sets.
+
+We can continue from this guarantee on x by using the fact that $x \notin A \equiv x \in \bar{A}$. Applying this to each individual set results in the following.
+
+\begin{center}
+\begin{tabular}{ll}
+    $x \notin S \land x \notin R \land x \notin T$ & $\iff$ \\
+    $x \in \bar{S} \land x \in \bar{R} \land x \in \bar{T}$ \\
+\end{tabular}   
+\end{center}
+
+By applying the identity where $x \in A \land x \in B \equiv x \in A \cap B$ we can simplify the
+above to the following.
+
+\begin{center}
+\begin{tabular}{ll}
+    $x \in \bar{S} \land x \in \bar{R} \land x \in \bar{T}$ & $\iff$ \\
+    $x \in \bar{S} \cap \bar{R} \cap \bar{T}$
+\end{tabular}   
+\end{center}
+
+This has demonstrated that $x \in \thecups \iff x \in \thecaps$ due to the fact that all manipulations were biconditionals. Since $x$ is some arbitrary element, the previous biconditional means exactly that $ \thecaps = \thecups$. Q.E.D

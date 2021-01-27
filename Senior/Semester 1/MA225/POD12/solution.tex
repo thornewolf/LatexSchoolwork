@@ -1,0 +1,41 @@
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{titlesec} % Enables custom title sections.
+\usepackage{float}
+
+\newmdtheoremenv{theo}{Theorem}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{lemma}{Lemma}
+
+\renewcommand\thesubsection{(\alph{subsection})}
+\titleformat{\subsection}
+{\normalfont\normalsize}{\thesubsection}{1em}{}
+
+\renewcommand\thesubsubsection{\hspace{10px}\roman{subsubsection}.}
+\titleformat{\subsubsection}
+{\normalfont\normalsize}{\thesubsubsection}{1em}{}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{POD 12}
+\newcommand{\AssignmentSub}{Sequence and Series Limits}
+\newcommand{\StudentNames}{Ashton McDonald, Teasha Saima, Thorne Wolfenbarger}
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{Problem Of Day 12}
+\input{body.tex}
+
+\end{document}

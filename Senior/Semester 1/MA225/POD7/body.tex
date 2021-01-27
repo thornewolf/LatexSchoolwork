@@ -1,0 +1,50 @@
+Consider: If n is a perfect square, then n+2 is not a perfect square.
+
+\begin{definition}
+  An integer a is a perfect square if there is an integer b such that $a=b^2$
+\end{definition}
+
+\subsection{Identify and rewrite propositions}
+\begin{center}
+  \begin{tabular}{ccl}
+    $P$ & := & n is a perfect square \\
+    $Q$ & := &  n+2 is not a perfect square \\
+  \end{tabular}
+\end{center}
+
+\subsection{Rewrite the propositions to depend on a variable}
+\begin{center}
+  \begin{tabular}{ccll}
+    $P(x) := x$ is a perfect square & where $x$ is an integer \\
+    $Q(y) := y + 2$ is not a perfect square & where $y$ is an integer \\
+  \end{tabular}
+\end{center}
+
+\subsection{Represent the statement purely with quantifiers and predicates}
+\begin{center}
+  $\forall x P(x) \rightarrow Q(x)$
+\end{center}
+
+\subsection{Determine the truth value of the statement}
+\raggedright
+We will perform a proof by contradiction. Suppose $\exists x (P(x) \land \lnot Q(x))$. This is equivalent to saying, suppose there exists some $x$ such that $x$ and $x+2$ are both perfect squares.
+
+By the definition of perfect square, $x=a\cdot a$ and $x+2=b\cdot b$ for some $a,b \in \mathbb{I}$. We also know that no negative integer can possibly be a perfect square as there are no real roots for a negative integer. Therefore the only valid values of $a,b$ are when $a,b \in \mathbb{N}$.
+
+Observe the following manipulations that result from subtracting $x=a\cdot a$ from $x+2=b\cdot b$: 
+\begin{center}
+$2 = b\cdot b - a\cdot a$ \\
+2 = (a + b)(a - b)
+\end{center}
+Since we have established $a,b \in \mathbb{N}$ and the factors of 2 are 1,2 or -1,-2 one of the following four relationship sets must hold:
+\begin{figure}[H]
+\begin{center}
+$a+b = 2, a-b = 1$ \\
+$a+b = 1, a-b = 2$ \\
+$a+b = -2, a-b = -1$ \\
+$a+b = -1, a-b = -2$ \\
+\end{center}
+\end{figure}
+In either of these situations we can add the two equations together to find $a = \pm \frac{3}{2}$. This is a direct contradiction since we have established that $a \in \mathbb{N}$. No value of $a$ that satisfies any of the above equations is a value that satisfies the condition that a must be a positive integer. Therefore the assertion $\exists x P(x) \rightarrow \lnot Q(x)$ is false. By the law of noncontradiction, $\exists x P(x) \rightarrow Q(x)$ is true.
+
+Q.E.D

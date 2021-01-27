@@ -1,0 +1,225 @@
+% !TEX options=--shell-escape
+
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{cite}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{Lab Report 2: Composites Test}
+\newcommand{\AssignmentSub}{~}
+\newcommand{\degf}{$^\circ $F}
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{Introduction}
+In this lab our team performed a series of heat treatment tests on four distinct 1045 steel specimens. One sample was heated to 1800\degf~then quenched in water. The second sample was heated to 1800\degf, quenched, heated to 650\degf, and quenched again. The third sample was heated to 1800\degf, then air-cooled in a ceramic crucible. The fourth sample was heated to 1800\degf, followed by a slow oven cool over approximately two days.
+
+After these prodecures, we cleaned and polished the specimens and recorded information on their appearence and hardness. In order to better understand what took place over the duration of this lab, we explore the various atomistic mechanisms at play.
+
+\section{Atomic Mechanisms}
+% 1.  Describe the atomistic mechanisms of the martensitic transformation.  What happens during the tempering process to create tempered martensite from martensite?
+An important transformation for this lab is the martensitic transformation. In the martensitic transformation, carbon particles are not provided appropriate time to diffuse within the iron and the FCC structure of iron becomes BCT (distorted BCC) with ``frozen-in'' carbon atoms. \cite{book} This distortion causes the structure of the martensite to be very hard and very brittle, due to its high residual stresses. Tempered martensite is created by reheating martensite to a moderate temperature and allowing the material to cool once again. This process allows for some diffusion of carbon atoms and helps recover some of the ductility of the material. This diffusion creates a final steel material that has high strength properties.
+
+\section{Pearlite and primary phase}
+% 2.  What is pearlite?  What is the primary (proeuctectoid) phase of any alloy?  Write down the designation of your alloy.  What is the expected primary (proeuctectoid) phase of your alloy?
+Pearlite is the eutectoid formed when an iron-carbon material undergoes a eutectoid reaction. The proeutectoid phase of any alloy is the first phase of a material that solidifies when the material is cooled. Our alloy is 1045 steel and the proeutectoid phase of this alloy $\alpha$ is ferrite.
+
+\section{Heat Treatment Procedures}
+% 3.  Create a table that includes every possible heat treatment procedure (including the one you did not perform, #5) from the first handout, only excluding the “as-received heat treatment” #1) along with your experimental hardness values for those heat treatments you performed.  Also in the table, provide the expected microstructure, as discussed in ES 320.
+
+Table \ref{tab:hardnessData} details the experimental hardness values for each specimen as well as the expected microstructure for each specimen.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|p{1.5cm}|p{2.5cm}|c|p{2cm}|}
+\hline
+Treatment Number & Treatment Performed (HV0.5) & Experimental Hardness & Expected Microstructure \\
+\hline
+2 & Heat to 1800\degf, quench & 457.1 & Martensite \\
+3 & Heat to 1800\degf, quench, reheat, quench & 473.0 & Tempered Martensite \\
+4 & Heat to 1800\degf, air cool & 211.3 & Fine Pearlite \\
+5 & Heat to 1280\degf, air cool & Not tested & \\
+6 & Heat to 1800\degf, slow cool & 154.8 & Coarse Pearlite \\
+\hline
+\end{tabular}
+\caption{Hardness data for heat treatments performed in this lab}
+\label{tab:hardnessData}
+\end{table}
+
+% Below the table, provide a discussion on whether or not your hardness values fall in the proper order, hardest to softest, that is generally expected from the performed heat treatments.  (Use class notes, the textbook, and other resources to determine this likely order for hardness.  You must provide citations!)  Note: There is some possible variation between different types of steels, but a general trend exists in many steels, including the ones we are using in lab.  Discuss fully!!
+We expect the hardness values in Table \ref{tab:hardnessData} to fall in the following order from highest to lowest: Martensite, Tempered Martensite, Fine Pearlite, Coarse Pearlite. \cite{book} We expect this order because longer cooling times allows for more carbon diffusion within the alloy, and therefore smaller residual stresses on the final microstructure. We did not observe this within our 1045 steel sample. Our data indicates that Tempered Martensite has a hardness value of $473.0$ compared to Martensite's hardness value of $457.1$. This order is a general trend within many steel and we expect that the Tempered Martensite have a lower hardness value than the Martensite. This error may be causes by instrumentation misuse by our team. In order to fully characterize this error, we would need to conduct an additional hardness test on each of the specimens to determine if an error was made in our measurements.
+
+% Finally, state where in the above order the hardness value should approximately be, relative to your other results, for the microstructure for which you did not perform the heat treatment (#5).
+
+For treatment number 5, we expect the hardness value to be lower than all measured hardness values. The reduction in maximum heat as well as the long cooling time suggests that less of a ``transformation'' takes place because of the lack of relative extremes.
+
+\newpage
+\section{Specimen Photographs}
+% 4.  On a single page each, place each of your photographs.  Provide a descriptive caption (which is always needed for a figure.)  One the same page below the photograph, provide the following information in the same order as listed here:
+% a)  Heat treatment performed
+% b)  Description of the expected microstructure, along with a discussion of the features that are typical of this expected microstructure (citations!).  
+% c)  Provide a published photograph for a similar microstructure (for any steel is OK).  Include your citations!
+% d)  Discussion of the features in your photograph compared to the expected microstructure, and the published photograph.  Use call-outs to show the features on the photograph you are discussing.  State which features seem to show well, and which do not.  Discuss possible reasons that features might not showing well in the photographs.
+
+\subsection*{Treatment 2}
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{Photos/no_notch_photo_annotated}
+\caption{Treatment 2 0.45 wt\% steel 200$\times$ magnified under an optical microscope}
+\end{figure}
+
+\subsubsection*{Heat Treatment Performed}
+This specimen was heated to 1800\degf~then quenched in water.
+
+\subsubsection*{Microstructure Description}
+We expect this specimen's microstructure to be martensite. Martensite is characterized by large amount of needles that are highly parallel with one another. \cite{ref:msSteel,ref:engMaterials2}
+
+\subsubsection*{Published Microstructure Photograph}
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{Photos/published_martensite}
+\caption{Microstructure for MS 950/1200}
+\end{figure}
+
+\subsubsection*{Feature Discussion}
+Notice that both photos feature visible needle pointing largely in the same direction. We observe some grain boundaries in our collected photo. These boundaries may be visible due to the low zoom level achieved during the collection of this photo. By being zoomed out, we have less of an emphasis on the individual needles in the martensite as well as some observation of the grain boundaries. Both images are in-line with the expected microstructure for martensite.
+
+\newpage
+
+\subsection*{Treatment 3}
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{Photos/notch_straight_photo_annotated}
+\caption{Treatment 3 0.45 wt\% steel 200$\times$ magnified under an optical microscope}
+\end{figure}
+
+\subsubsection*{Heat Treatment Performed}
+This specimen was heated to 1800\degf, quenched in water, reheated to a lower temperature, then quenched again.
+
+\subsubsection*{Microstructure Description}
+We expect this specimen's microstructure to be tempered martensite. Tempered martensite is characterized reduction in the number of needles present in "normal" martensite. \cite{ref:msSteel,ref:engMaterials2}
+
+\subsubsection*{Published Microstructure Photograph}
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{Photos/TemperedMartensite}
+\caption{Tempered Martensite Example}
+\end{figure}
+
+\subsubsection*{Feature Discussion}
+We can can see a distinct lack of grain boundaries in both photos. At the same zoom-level, this indicated that the reheating of the alloy has allowed the grains in the original martensite to merge into larger grains as well as allow for the martensitic needles to combine and grow longer. We can see seemingly larger needles in both of the presented images, when compared to the images associated with martensite. These facts indicate that the expectation for treatment 3 to produce tempered martensite to be correct.
+
+\newpage
+
+\subsection*{Treatment 4}
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{Photos/two_notch_photo_annotated}
+\caption{Treatment 4 0.45 wt\% steel 200$\times$ magnified under an optical microscope}
+\end{figure}
+
+\subsubsection*{Heat Treatment Performed}
+This specimen was heated to 1800\degf, then allowed to air-cool.
+
+\subsubsection*{Microstructure Description}
+We expect this specimen's microstructure to be fine pearlite, which consists of "closely spaced fine platelets of ferrite and cementite." \cite{book,WU201253}
+
+\subsubsection*{Published Microstructure Photograph}
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{Photos/published_pearlite}
+\caption{Optical micrographs of samples cooled at $0.1^\circ C s^{-1}$ \cite{WU201253}}
+\end{figure}
+
+\subsubsection*{Feature Discussion}
+Notice the curved appearance of the material in both images. This curvature is caused by large amounts of ferrite and cementite ``sharing'' the available space. This combination of structures is caused by the moderately paced cooling of the steel alloy. The features that characterize pearlite show well in both of these images. 
+
+\newpage
+
+\subsection*{Treatment 6}
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{Photos/notch_round_photo_annotated}
+\caption{Treatment 6 0.45 wt\% steel 200$\times$ magnified under an optical microscope}
+\end{figure}
+
+\subsubsection*{Heat Treatment Performed}
+This specimen was heated to 1800\degf, then slowly cooled within the oven.
+
+\subsubsection*{Microstructure Description}
+We expect this specimen's microstructure to be coarse pearlite, which consists of "relatively thick
+platelets." \cite{book,ref:coarsePearl}
+
+\subsubsection*{Published Microstructure Photograph}
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{Photos/CoarsePearliteShort}
+\caption{Photomicrograph of coarse pearlite. 3000$\times$ \cite{ref:coarsePearl}}
+\end{figure}
+
+\subsubsection*{Feature Discussion}
+We can see significantly thicker platelets within these two images, when compared to the images for fine pearlite. The platelet size indicated that there was more time for diffusion to take place within the alloy and for individual grains to merge. This collected image is more clearly its respective microstructure out of the set of images collected within this lab.
+
+\newpage
+\section{Pearlite Microstructure Expectations and Results}
+% 5.  On a new page, using the iron-carbon phase diagram, calculate the amount of the pearlite microstructure expected for your steel’s eutectoid microstructure.  State exactly which of your microstructures should have the pearlite microstructure, and then discuss whether or not your calculated percentage seems to approximately match what is visible in the appropriate photographs.  Discuss differences.
+
+We can use Figure \ref{fig:SteelEuDia} to calculate the amount of pearlite microstructure for our steel's eutectoid microstructure. I expect that treatments 4 and 6 will have this pearlite microstructure as their cooling processes are slow enough for pearlite to form. Figure \ref{fig:TTT} contains the approximate trajectory for treatments 4 and 6.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{Photos/SteelEutectoidDiagram}
+\caption{Phase Diagram for Iron-Carbon Steel}
+\label{fig:SteelEuDia}
+\end{figure}
+
+To calculate the amount of pearlite within our alloy, we will drop a vertical line at a carbon weight percent of 0.45. This vertical line has it's intersection point with the eutectic line present in Figure \ref{fig:SteelEuDia} and the length of the tie-lines are determined. It can bee seen that the left bound on the eutectoid line is approximately 0.1 and the right bound is approximately 0.8. We can use this information to calculate the pearlite percentage.
+
+\begin{equation}
+f_{pearlite} = \frac{0.45 - 0.1}{0.8 - 0.1} \cdot 100~wt~\% = 50~wt~\% 
+\end{equation}
+
+Qualitatively, this 50\% figure seems to matche the observed pearlite percentage present within treatments 4 and 5. Differences between these observed proportions can be explained by the fact that our calculation relies on equilibrium conditions, rather than continual cooling. Treatment 6 matches more highly than treatment 4, as treatment 6 emulates equilibrium contitions more.
+
+
+\section{TTT Diagram Trajectories}
+% 6.  On a new page, make a copy of the most appropriate TTT diagram, which will be provided to you on Canvas.  Draw cooling trajectories that approximate our heat treatments, focusing on the cooling portions!  (Remember: Tempering is not shown on the TTT diagram, nor is spheroidizing.)
+
+Figure \ref{fig:TTT} denootes the cooling trajectory associated with each of the tested specimen.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{Photos/TTTDrawn}
+\caption{Annotated TTT Diagram for 1045 steel\\Red: Treatments 2,3, Green: Treatment 4, Blue: Treatment 6}
+\label{fig:TTT}
+\end{figure}
+
+The two quenched specimens follow the red curve, indicating that there is never any opportunity for bainite or pearlite to form. The tempering process is not shown on this figure, as this TTT diagram does not provide necessary information to make any determinations about tempering.
+
+\section{Normalizing and Annealing}
+% 7.  Define normalizing and annealing, as applies to the heat treatment of steel.  (Note: annealing of steel is different than the recovery, recrystallization, and grain growth annealing discussed earlier in this course!  And, there are a few types of steel annealing – what is closest to our procedures?)  Which of your heat treatments do these correspond to?
+Normalizing steel is the process of rolling steel to induce residual internal stresses, followed by heating to a moderately high temperature. (800-900$^\circ$C) \cite{ref:normalize} ``The process refines the grain size, improves the mechanical properties and relieves internal stresses.'' \cite{ref:normalize} This corresponds to treatment 3, where we reheated high-residual stress martensite to a moderate temperature and recovered some ductility.
+
+Annealed steel ``is obtained by furnace cooling from the austenite phase. It is a relatively soft and
+very ductile material that consists of pearlite and proeutectic ferrite.'' \cite{book} This definition corresponds to treatment 6 in this lab. There are multiple methods of annealing steel, distinct from recovery, recrystallization, and grain growth annealing. These methods include complete annealing, isothermal annealing, spherical annealing, recrystalization annealing, and diffusion annealing. \cite{ref:anneal} Each of these processes is purposed with accurately controlling the strength and ductility of a steel alloy.
+
+\raggedright
+% \nocite{*}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

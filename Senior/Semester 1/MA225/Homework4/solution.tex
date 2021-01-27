@@ -1,0 +1,172 @@
+% !TEX options=--shell-escape
+
+\documentclass{article}
+
+\usepackage{multicol} % Enables multicol env.
+\usepackage{graphicx} % Enables including graphics.
+\usepackage[export]{adjustbox} % Allows graphics to have a `center` property.
+\usepackage[pdf]{graphviz}
+\usepackage{mdframed}
+\usepackage{parskip}
+\usepackage{amssymb}
+\usepackage{titlesec} % Enables custom title sections.
+\usepackage{float}
+\usepackage{listings}
+
+
+
+\newmdtheoremenv{theo}{Theorem}
+\newmdtheoremenv{fact}{Fact}
+\newmdtheoremenv{definition}{Definition}
+\newmdtheoremenv{lemma}{Lemma}
+
+\renewcommand\thesection{Question \arabic{section}}
+\titleformat{\subsection}
+{\normalfont\normalsize}{\thesubsection}{1em}{}
+
+\renewcommand\thesubsection{(\alph{subsection})}
+\titleformat{\subsection}
+{\normalfont\normalsize}{\thesubsection}{1em}{}
+
+\renewcommand\thesubsubsection{\hspace{10px}\roman{subsubsection}.}
+\titleformat{\subsubsection}
+{\normalfont\normalsize}{\thesubsubsection}{1em}{}
+
+\newcommand{\YearPath}{../../../LatexConfig} % Get year level path (i.e. Senior)
+\newcommand{\SemesterPath}{../../LatexConfig} % Get semester level path (i.e. Semester 1).
+\newcommand{\ClassPath}{../LatexConfig} % Get class level path (i.e. CS101).
+\newcommand{\AssignmentTitle}{Homework 4}
+\newcommand{\AssignmentSub}{~ ~}
+
+\begin{document}
+
+\input{\SemesterPath/config}
+\input{\ClassPath/config}
+\input{\YearPath/titlepage}
+
+\section{} % 1
+Define a recursive sequence \\
+\input{../POD13/body.tex}
+
+\newpage
+\section{} % 2
+Create an interesting example of a relation on a set. Your set should have at least 5 elements, and your relation should be non-trivial.
+
+Consider the set $S=\{2, 3, 6, 9, 12, 17\}$.\\
+Consider the relation $R=\{(a,b) ~s.t.~ a$ shares a divisor with $b\}$
+
+This means that the relation $R=$\\
+$\{(2,6), (2,12), (3,6), (3,9), (3,12), (6,2), (6,3), (6,9), (6,12), (9,3), (9,6), (9,12),$\\
+$(2,2), (3,3), (6,6), (9,9), (12,12), (17, 17)\}$
+
+\subsection{Determine if the relation you defined on your chosen set is reflexive, symmetric, and/or transitive}
+This relation is reflexive, symmetric, but not transitive. Reflexive because each element relates to itself, symmetric because $(a,b) \in R \rightarrow (b,a) \in R$, and not transitive because $(a,b) \in R \land (b,c) \in R \not \rightarrow (a,c) \in R$. An example of failing transitivity are the elements $\{(2,12), (12,9)\}$ but there is no $(2,9)$.
+
+\subsection{Construct the relation matrix $M_R$ for the relation. Be sure to indicate which element of the set
+represents which row of the matrix.}
+\begin{figure}[H]
+\centering
+\begin{tabular}{|c|cccccc|}
+\hline
+Element & 2 & 3 & 6 & 9 & 12 & 17 \\
+\hline
+2 & 1 & 0 & 1 & 0 & 1 & 0 \\
+3 & 0 & 1 & 1 & 1 & 1 & 0 \\
+6 & 1 & 1 & 1 & 1 & 1 & 0 \\
+9 & 0 & 1 & 1 & 1 & 1 & 0 \\
+12 & 1 & 1 & 1 & 1 & 1 & 0 \\
+17 & 0 & 0 & 0 & 0 & 0 & 1 \\
+\hline
+\end{tabular}
+\end{figure}
+
+\subsection{Construct a graph that corresponds to your relation. Be sure to indicate which element of the
+set represents which vertex of the graph.}
+
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=4.5in]{RelationGraph}
+\end{figure}
+
+\subsection{Describe the relationship between your set relation, the relation matrix, the graph, and the adjacency matrix for the graph.}
+
+The relation matrix $M_R$ is exactly the adjacency matrix for the resultant graph. A notable characteristic about the relation is that since it is symmetric we can represent the relation graph as an undirected graph. The reflexiveness of the relation is readily apparent since we can see the self-loop on every vertex within the graph. 
+
+These three items, the relation, the relation matrix, and the resultant graph all communicate exactly the same information about this relation on the set $S$.
+
+\newpage
+\section{} % 3
+\input{../POD14/body.tex}
+
+\newpage
+\section{} % 4
+Compute each of the following values, and show your work.
+\subsection{($177$ mod $31\cdot 270$ mod $31$) mod 31}
+\begin{center}
+\begin{tabular}{cl}
+$31\cdot 270 = 8370 > 177$ \\
+177 mod 8370 = 177 & This is because 8370 is to large to divide 177 even once. \\
+(177 mod 31) mod 31 = 22 mod 31 & The remainder after division is 22 \\
+22 mod 31 = 22 & By the same reasoning as before. 31 does not divide 22
+\end{tabular}
+\end{center}
+
+The answer is 22.
+
+\subsection{($7^3$ mod 23)$^2$ mod 31}
+\begin{center}
+\begin{tabular}{clc}
+($7^3$ mod 23)$^2$ mod 31 & & $\iff$ \\
+$[(49 ~\rm{mod}~ 23)(7 ~\rm{mod}~ 23) ~\rm{mod}~ 23]^2$ mod 31 & By the modular multiplication identity & $\iff$ \\
+$[(3)(7) ~\rm{mod}~ 23]^2 mod 31$ & Simplifying & $\iff$ \\
+$21^2 ~\rm{mod}~ 31$ & Evaluating and simplifying & $\iff$ \\
+$441 ~\rm{mod}~ 31 = 7$ & Evaluating
+\end{tabular}
+\end{center}
+
+The answer is 7.
+
+\subsection{$(99^2 ~\rm{mod}~ 32)^3 ~\rm{mod}~ 15$}
+
+\begin{center}
+\begin{tabular}{clc}
+$(99^2 ~\rm{mod}~ 32)^3 ~\rm{mod}~ 15$ & & $\iff$ \\
+$[(99 ~\rm{mod}~ 32)(99 ~\rm{mod}~ 32) ~\rm{mod}~ 32]^3 ~\rm{mod}~ 15$ & Modular multiplication rule & $\iff$ \\
+$(3\cdot 3 ~\rm{mod}~ 32)^3 ~\rm{mod}~ 15$ & Evaluation & $\iff$ \\
+$9^3 ~\rm{mod}~ 15$ & Evaluation & $\iff$ \\
+$729 ~\rm{mod}~ 15 = 9$ & Evaluation
+\end{tabular}
+\end{center}
+
+The answer is 9.
+
+\subsection{Prove the following: if $a,b,m,n \in \mathbb{Z}, m \geq 1, n \geq 2$, and $a \equiv b ~\rm{mod}~ n$, then $a^m \equiv b^m ~\rm{mod}~ n$.}
+
+\begin{center}
+\begin{tabular}{p{0.6\linewidth}p{0.4\linewidth}c}
+    $a,b,m,n \in \mathbb{Z}$ & Given as the domain for all used variables \\
+    $m \geq 1, n \geq 2$ & Given \\
+    $a \equiv b ~\rm{mod}~ n$ & Given \\
+    $a^m = a \cdot a \cdot a\ldots \cdot a$ ($m$ times) & Definition of exponentiation \\
+    $b^m = b \cdot b \cdot b\ldots \cdot b$ ($m$ times) & Definition of exponentiation \\
+    $x^2 ~\rm{mod}~ q \iff (x ~\rm{mod}~ q)(x ~\rm{mod}~ q) ~\rm{mod}~ q$ & Law of modular multiplication for any arbitrary $x$. \\
+    $a^m ~\rm{mod}~ n = (a ~\rm{mod}~ n)(a ~\rm{mod}~ n)\ldots (a ~\rm{mod}~ n) ~\rm{mod}~ n $ (m times) & Application of multiplication and exponentiation definitions \\
+    $b^m ~\rm{mod}~ n = (b ~\rm{mod}~ n)(b ~\rm{mod}~ n)\ldots (b ~\rm{mod}~ n) ~\rm{mod}~ n $ (m times) & Application of multiplication and exponentiation definitions \\
+    $b^m ~\rm{mod}~ n = (a ~\rm{mod}~ n)\ldots (a ~\rm{mod}~ n) ~\rm{mod}~ n $ (m times) & Since $a \equiv b ~\rm{mod}~ n$ \\
+    $a^m \equiv b^m ~\rm{mod}~ n$ & Since we have established that both terms are equivalent to the multiplication expansion of $a^m ~\rm{mod}~ n$
+\end{tabular}
+\end{center}
+
+Therefore, $a \equiv b ~\rm{mod}~ n \rightarrow a^m \equiv b^m ~\rm{mod}~ n$.
+
+\newpage
+\section{} % 5
+\input{../POD15/body.tex}
+
+\newpage
+\section{} % 6
+POD 16: Below you will encrypt and decrypt messages using the RSA system.
+\input{../POD16/body.tex}
+
+\end{document}

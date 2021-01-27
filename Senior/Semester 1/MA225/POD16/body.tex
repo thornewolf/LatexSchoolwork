@@ -1,0 +1,74 @@
+\subsection{Encrypt the message HELP using the RSA system with $n=43\cdot 59$ and $e=13$, translating each letter into integers and grouping together pairs of integers, as done in Example 8 (7th Edition).}
+The value of $n=43\cdot 56 = 2537$. Using this value we can encode each letter within the word HELP, group into 4s, and then encrypt these encodings.
+
+\begin{figure}[ht]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Letter & Encoded \\
+\hline
+H & 07 \\
+E & 04 \\
+L & 11 \\
+P & 15 \\
+\hline
+\end{tabular}
+\end{figure}
+
+We will now cluster into groups of four digits and encrypt by passing through the function. $\epsilon(x) = x^e \rm{~mod~} n$
+
+\begin{figure}[ht]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Group & Encoded & Encrypted \\
+\hline
+HE & 0704 & 0981 \\
+LP & 1115 & 0461 \\
+\hline
+\end{tabular}
+\end{figure}
+
+Therefore, our encrypted message is $0981~0461$.
+
+\subsection{What is the original message encrypted using the RSA system $n = 53\cdot 61$ and $e=17$ if the encrypted message is $3185~2038~2460~2550$? To decrypt, first find the decryption exponent $d$, which is the inverse of $e=17 \rm{~mod~} (52\cdot 60)$}
+
+To find the decryption exponent $d$ we need to find a value for $d$ such that $de \equiv 1 \rm{~mod~} k$. Using a small python script we can determine an appropriate value for d as we know $e=17, k=(53-1)\cdot (61-1)=3120$.
+
+\begin{lstlisting}[language=Python]
+# A python program to calculate a modular inverse given e and k
+e = 17
+k = 3120
+
+for d in range(N):
+    if d*e % k == 1:
+        print(d)
+\end{lstlisting}
+
+The output of this code is \texttt{2753}. Therefore the correct value for $d$ is 2753. We can now use this to decode the original message using $\delta(y) = y^d \rm{~mod~} n$.
+
+\begin{figure}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+Encrypted & Decrypted\\
+\hline
+3185 & 1816 \\
+2038 & 2008 \\
+2460 & 1717 \\
+2550 & 0411 \\
+\hline
+\end{tabular}
+\end{figure}
+
+An example of the decription of $3185$ can be seen below.
+\begin{center}
+    $\delta(y) = y^d \rm{~mod~} n$ \\
+    $\delta(3185) = 3185^{2753} \rm{~mod~} 3233 = 1816$ \\
+    We then break 1816 into 18 and 16 then decode. \\
+    $18 = s, 16 = q$ \\
+\end{center}
+
+This means the single value 3185 decrypts into ``sq''.
+
+By breaking up the decrypted integers into groups of two we get a message of $[18, 16, 20, 8, 17, 17, 4, 11]$. Decoding this results in the original message squirrel.
